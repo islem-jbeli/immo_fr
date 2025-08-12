@@ -84,13 +84,37 @@
                 "input": "public"
               }
             ],
+           
             "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+  "src/styles.css",
+  "src/assets/vendor/bootstrap/css/bootstrap.min.css",
+  "src/assets/vendor/bootstrap-icons/bootstrap-icons.css",
+  "src/assets/vendor/aos/aos.css",
+  "src/assets/vendor/glightbox/css/glightbox.min.css",
+  "src/assets/vendor/swiper/swiper-bundle.min.css",
+  "src/assets/vendor/drift-zoom/drift-basic.css",
+  "src/assets/css/main.css",
+   "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "src/styles.css"
+
+
+
+],
+"scripts": [
+  "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+  "src/assets/vendor/aos/aos.js",
+  "src/assets/vendor/glightbox/js/glightbox.min.js",
+  "src/assets/vendor/swiper/swiper-bundle.min.js",
+  "src/assets/vendor/drift-zoom/Drift.min.js",
+  "src/assets/js/main.js"
+]
+
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "889108ea-1d56-4b50-b2bb-356420d80535"
   }
 }

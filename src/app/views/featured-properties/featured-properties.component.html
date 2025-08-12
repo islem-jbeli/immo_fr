@@ -1,0 +1,106 @@
+<section id="featured-properties" class="featured-properties section">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Featured Properties</h2>
+    <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="grid-featured" data-aos="zoom-in" data-aos-delay="150">
+
+      <!-- Carte principale -->
+      <article class="highlight-card">
+        <div class="media">
+          <div class="badge-set" *ngIf="featuredMain.flags">
+            <span *ngFor="let flag of featuredMain.flags" class="flag" [ngClass]="flag.toLowerCase()">{{ flag }}</span>
+          </div>
+          <a href="property-details.html" class="image-link">
+            <img [src]="featuredMain.imageUrl" [alt]="featuredMain.title" class="img-fluid" />
+          </a>
+          <div class="quick-specs">
+            <span><i class="bi bi-door-open"></i> {{ featuredMain.beds }} Beds</span>
+            <span><i class="bi bi-droplet"></i> {{ featuredMain.baths }} Baths</span>
+            <span><i class="bi bi-aspect-ratio"></i> {{ featuredMain.area }}</span>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="top">
+            <div>
+              <h3><a href="property-details.html">{{ featuredMain.title }}</a></h3>
+              <div class="loc"><i class="bi bi-geo-alt-fill"></i> {{ featuredMain.location }}</div>
+            </div>
+            <div class="price">{{ featuredMain.price }}</div>
+          </div>
+          <p class="excerpt">{{ featuredMain.description }}</p>
+          <div class="cta">
+            <a href="property-details.html" class="btn-main">Arrange Visit</a>
+            <a href="property-details.html" class="btn-soft">More Photos</a>
+            <div class="meta">
+              <span class="status for-sale">{{ featuredMain.status }}</span>
+              <span class="listed">{{ featuredMain.listedAgo }}</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Liste mini cartes -->
+      <div class="mini-list">
+        <article class="mini-card" *ngFor="let prop of miniProperties" data-aos="fade-up">
+          <a href="property-details.html" class="thumb">
+            <img [src]="prop.imageUrl" [alt]="prop.title" class="img-fluid" loading="lazy" />
+            <span *ngFor="let label of prop.labels" class="label" [ngClass]="label.type">
+              <i class="bi" [ngClass]="label.icon"></i> {{ label.text }}
+            </span>
+          </a>
+          <div class="mini-body">
+            <h4><a href="property-details.html">{{ prop.title }}</a></h4>
+            <div class="mini-loc"><i class="bi bi-geo"></i> {{ prop.location }}</div>
+            <div class="mini-specs">
+              <span><i class="bi bi-door-open"></i> {{ prop.beds }}</span>
+              <span><i class="bi bi-droplet"></i> {{ prop.baths }}</span>
+              <span><i class="bi bi-rulers"></i> {{ prop.area }}</span>
+            </div>
+            <div class="mini-foot">
+              <div class="mini-price">{{ prop.price }}</div>
+              <a href="property-details.html" class="mini-btn">Details</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Cartes empilées -->
+    <div class="row gy-4 mt-4">
+      <div class="col-lg-4" *ngFor="let prop of stackProperties" data-aos="fade-up">
+        <article class="stack-card">
+          <figure class="stack-media">
+            <img [src]="prop.imageUrl" [alt]="prop.title" class="img-fluid" loading="lazy" />
+            <figcaption>
+  <span
+    class="chip"
+    *ngIf="prop.labels && prop.labels.length > 0"
+    [ngClass]="prop.labels[0].type"
+  >
+    {{ prop.labels[0].text }}
+  </span>
+</figcaption>
+
+          </figure>
+          <div class="stack-body">
+            <h5><a href="property-details.html">{{ prop.title }}</a></h5>
+            <div class="stack-loc"><i class="bi bi-geo-alt"></i> {{ prop.location }}</div>
+            <ul class="stack-specs">
+              <li><i class="bi bi-door-open"></i> {{ prop.beds }}</li>
+              <li><i class="bi bi-droplet"></i> {{ prop.baths }}</li>
+              <li><i class="bi bi-aspect-ratio"></i> {{ prop.area }}</li>
+            </ul>
+            <div class="stack-foot">
+              <span class="stack-price">{{ prop.price }}</span>
+              <a href="property-details.html" class="stack-link">View</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

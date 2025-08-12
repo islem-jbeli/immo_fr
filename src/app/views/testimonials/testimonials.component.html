@@ -1,0 +1,44 @@
+
+<section id="testimonials" class="testimonials section light-background">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Testimonials</h2>
+    <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <!-- Swiper Container -->
+    <div class="swiper testimonials-slider" [swiper]="swiperConfig">
+      <div class="swiper-wrapper">
+        <!-- Dynamique avec *ngFor -->
+        <div class="swiper-slide" *ngFor="let testimonial of testimonials">
+          <div class="testimonial-item">
+            <div class="row">
+              <div class="col-lg-8">
+                <h2>{{ testimonial.title }}</h2>
+                <p *ngFor="let paragraph of testimonial.content">{{ paragraph }}</p>
+                <div class="profile d-flex align-items-center">
+                  <img [src]="testimonial.profileImg" class="profile-img" alt="">
+                  <div class="profile-info">
+                    <h3>{{ testimonial.name }}</h3>
+                    <span>{{ testimonial.role }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 d-none d-lg-block">
+                <div class="featured-img-wrapper">
+                  <img [src]="testimonial.featuredImg" class="featured-img" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Navigation -->
+      <div class="swiper-navigation w-100 d-flex align-items-center justify-content-center">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+  </div>
+</section>

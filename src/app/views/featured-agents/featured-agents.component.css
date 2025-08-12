@@ -1,0 +1,162 @@
+.featured-agents {
+  padding: 4rem 0;
+}
+
+.agent-card {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.agent-card:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.agent-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.agent-image img {
+  width: 100%;
+  display: block;
+}
+
+.agent-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.agent-card:hover .agent-overlay {
+  opacity: 1;
+}
+
+.contact-buttons a {
+  margin: 0 0.25rem;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.status-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0.25rem 0.75rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+.top-agent {
+  background-color: #007bff;
+}
+
+.certified {
+  background-color: #28a745;
+}
+
+.new-star {
+  background-color: #ffc107;
+}
+
+.agent-info {
+  padding: 1.5rem;
+}
+
+.agent-name {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.agent-title {
+  margin: 0.25rem 0 1rem;
+  color: #666;
+}
+
+.agent-stats {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-number {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.stat-divider {
+  width: 1px;
+  background: #ddd;
+  height: 40px;
+}
+
+.location-tag {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.location-tag i {
+  margin-right: 0.5rem;
+  color: #007bff;
+}
+
+.specialties {
+  margin-bottom: 1rem;
+}
+
+.specialty-tag {
+  background: #e9ecef;
+  color: #555;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.profile-link {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 600;
+}
+
+.profile-link:hover {
+  text-decoration: underline;
+}
+
+.explore-agents-btn {
+  font-weight: 700;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.explore-agents-btn i {
+  margin-left: 0.5rem;
+}
