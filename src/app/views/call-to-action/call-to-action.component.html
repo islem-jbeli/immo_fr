@@ -1,0 +1,59 @@
+<section class="call-to-action-2 call-to-action section light-background" id="call-to-action">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row align-items-center">
+      <!-- Left Column -->
+      <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="200">
+        <div class="cta-content">
+          <div class="section-badge">{{ badge }}</div>
+          <h2>{{ title }}</h2>
+          <p>{{ description }}</p>
+
+          <div class="benefits-list">
+            <div class="benefit-item" *ngFor="let benefit of benefits" data-aos="fade-up" [attr.data-aos-delay]="benefit.delay">
+              <i [class]="benefit.icon"></i>
+              <span>{{ benefit.text }}</span>
+            </div>
+          </div>
+
+          <div class="cta-actions">
+            <a href="contact.html" class="btn btn-primary">
+              <i class="bi bi-person-lines-fill"></i>
+              Get Free Consultation
+            </a>
+            <a href="contact.html" class="btn btn-secondary">
+              <i class="bi bi-telephone-fill"></i>
+              Call (+216) 58964818
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="250">
+        <div class="cta-visual">
+          <div class="main-image">
+            <img src="assets/img/real-estate/property-exterior-5.webp" alt="Property Investment" class="img-fluid">
+            <div class="overlay-badge">
+              <i class="bi bi-star-fill"></i>
+              <span>Trusted by 500+ Clients</span>
+            </div>
+          </div>
+
+          <div class="floating-stats">
+            <div class="stat-card" *ngFor="let stat of stats" data-aos="zoom-in" [attr.data-aos-delay]="stat.delay">
+              <div class="stat-icon">
+                <i [class]="stat.icon"></i>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number">{{ stat.number }}</span>
+                <span class="stat-label">{{ stat.label }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

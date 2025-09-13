@@ -1,0 +1,38 @@
+.why-us {
+  padding: 60px 0;
+  background: #f9fafb;
+}
+
+.section-title h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.section-title p {
+  color: #64748b;
+}
+
+/* Floating stats example */
+.floating-stats {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.stat-badge {
+  background: #fdfbfb;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.stat-number {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.stat-text {
+  font-size: 0.9rem;
+  color: #0f1010;
+}

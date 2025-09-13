@@ -24,7 +24,7 @@ export class FeaturedAgentsComponent {
       propertiesSold: '150+',
       propertiesLabel: 'Properties Sold',
       rating: 4.9,
-      location: 'Miami Beach',
+      location: 'Tunis Centre',
       specialties: ['Waterfront', 'High-Rise'],
       profileLink: 'agent-profile.html',
       delay: 100
@@ -41,7 +41,7 @@ export class FeaturedAgentsComponent {
       propertiesSold: '90+',
       propertiesLabel: 'Commercial Sales',
       rating: 4.8,
-      location: 'Downtown',
+      location: 'La Marsa',
       specialties: ['Office Space', 'Retail'],
       profileLink: 'agent-profile.html',
       delay: 200
@@ -58,7 +58,7 @@ export class FeaturedAgentsComponent {
       propertiesSold: '75+',
       propertiesLabel: 'Happy Families',
       rating: 4.9,
-      location: 'Suburbs',
+      location: 'Sousse',
       specialties: ['Family Homes', 'First-Time'],
       profileLink: 'agent-profile.html',
       delay: 300

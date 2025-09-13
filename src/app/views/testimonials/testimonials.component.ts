@@ -1,41 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { SwiperOptions } from 'swiper/types';
+import { CommonModule } from '@angular/common';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-testimonials',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './testimonials.component.html',
-  styleUrls: ['./testimonials.component.scss']
+  styleUrls: ['./testimonials.component.css']
 })
 export class TestimonialsComponent implements OnInit {
-  // Configuration Swiper
-  swiperConfig: SwiperOptions = {
-    slidesPerView: 1,
-    loop: true,
-    speed: 600,
-    autoplay: { delay: 5000 },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    }
-  };
-
-  // Données des témoignages
   testimonials = [
     {
-      title: 'Sed ut perspiciatis unde omnis',
-      content: [
-        'Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.',
-        'Beatae magnam dolore quia ipsum. Voluptatem totam et qui dolore dignissimos. Amet quia sapiente laudantium nihil illo et assumenda sit cupiditate. Nam perspiciatis perferendis minus consequatur. Enim ut eos quo.'
-      ],
-      profileImg: 'assets/img/person/person-m-7.webp',
-      featuredImg: 'assets/img/person/person-m-7.webp',
       name: 'Saul Goodman',
-      role: 'Client'
+      role: 'Client',
+      img: 'assets/img/person/person-m-7.webp',
+      paragraphs: ['Un service exceptionnel, je recommande fortement !']
     },
-    // Ajoutez d'autres témoignages ici...
+    {
+      name: 'Sara Wilsson',
+      role: 'Designer',
+      img: 'assets/img/person/person-f-8.webp',
+      paragraphs: ['Une expérience fluide et agréable, bravo à toute l’équipe.']
+    }
   ];
 
   ngOnInit(): void {
-    // Initialisation Swiper (optionnel si vous utilisez ngx-swiper-wrapper)
+    AOS.init({ duration: 1000, once: true });
   }
 }

@@ -1,3 +1,12 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+import { AboutComponent } from './views/about/about.component';
+
+
+export const routes: Routes = [
+ 
+  { path: 'about', component: AboutComponent },  // About
+
+  { path: '**', redirectTo: '' } // redirection
+ 
+];

@@ -1,0 +1,24 @@
+/* Social links améliorés */
+.footer .social-links {
+  display: flex;
+  gap: 10px; /* espace entre chaque icône */
+  margin-top: 15px;
+}
+
+.footer .social-links a {
+  width: 40px;
+  height: 40px;
+  background-color: #333; /* fond sombre pour les icônes */
+  color: #fff;            /* icône blanche */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;     /* cercle parfait */
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.footer .social-links a:hover {
+  background-color: #0f2eb8; /* couleur principale au survol */
+  transform: translateY(-3px); /* léger mouvement */
+}
