@@ -10,25 +10,13 @@
 
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
         <li><a routerLink="/about" routerLinkActive="active" class="active">About</a></li>
         <li><a routerLink="/properties" routerLinkActive="active">Properties</a></li>
         <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
         <li><a routerLink="/agents" routerLinkActive="active">Agents</a></li>
         <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
 
-        <li class="dropdown">
-          <a href="#"><span>More Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-          <ul>
-            <li><a routerLink="/property-details">Property Details</a></li>
-            <li><a routerLink="/service-details">Service Details</a></li>
-            <li><a routerLink="/agent-profile">Agent Profile</a></li>
-            <li><a routerLink="/blog-details">Blog Details</a></li>
-            <li><a routerLink="/terms">Terms</a></li>
-            <li><a routerLink="/privacy">Privacy</a></li>
-            <li><a routerLink="/404">404</a></li>
-          </ul>
-        </li>
 
         
         <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
@@ -52,10 +40,10 @@
           <div class="col-lg-8">
             <h1 class="heading-title">About</h1>
             <p class="mb-0">
-              Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo
-              odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum
-              debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat
-              ipsum dolorem.
+              Welcome to our platform! We are committed to providing high-quality, reliable services 
+  tailored to your needs. Our team strives to deliver a seamless and secure experience, 
+  constantly innovating to meet market expectations. Discover how we can support your 
+  projects and make your daily life easier.
             </p>
           </div>
         </div>
@@ -74,3 +62,121 @@
 
 </main>
 <!-- End Main -->
+ <!-- About Section -->
+<section id="about" class="about section">
+
+  <div class="container">
+
+    <!-- Intro Row -->
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-7">
+        <div class="intro-content">
+          <div class="section-badge">
+            <i class="bi bi-house-heart"></i>
+            <span>Your Trusted Real Estate Partner</span>
+          </div>
+          <h2>Building Dreams, Creating Homes Since 2010</h2>
+          <p class="lead-text">
+            Welcome to our platform! We are committed to providing high-quality, reliable services 
+            tailored to your needs. Our team strives to deliver a seamless and secure experience.
+          </p>
+          <p>
+            Discover how we can support your projects and make your daily life easier.
+          </p>
+
+          <div class="founder-highlight">
+            <div class="founder-image">
+              <img src="assets/img/person/person-m-7.webp" alt="Founder" class="img-fluid">
+            </div>
+            <div class="founder-info">
+              <blockquote>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit."</blockquote>
+              <div class="founder-details">
+                <h5>Michael Thompson</h5>
+                <span>Founder &amp; CEO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="visual-section">
+          <div class="main-image">
+            <img src="assets/img/real-estate/property-exterior-7.webp" alt="Luxury Development" class="img-fluid">
+            <div class="experience-badge">
+              <div class="badge-number">14+</div>
+              <div class="badge-text">Years of Excellence</div>
+            </div>
+          </div>
+          <div class="overlay-image">
+            <img src="assets/img/real-estate/property-interior-6.webp" alt="Interior Design" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievements Grid -->
+    <div class="achievements-grid">
+      <div class="row text-center">
+        <div class="col-lg-3 col-md-6 mb-4" *ngFor="let achievement of achievements">
+          <div class="achievement-item">
+            <div class="achievement-icon">
+              <i class="bi" [ngClass]="achievement.icon"></i>
+            </div>
+            <div class="achievement-number">{{ achievement.number }}{{ achievement.suffix }}</div>
+            <div class="achievement-label">{{ achievement.label }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Section -->
+    <div class="timeline-section">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="section-header text-center mb-5">
+            <h3>Our Journey of Excellence</h3>
+            <p>Discover our milestones and achievements over the years.</p>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item" *ngFor="let event of timeline">
+              <div class="timeline-year">{{ event.year }}</div>
+              <div class="timeline-content">
+                <h4>{{ event.title }}</h4>
+                <p>{{ event.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Preview -->
+    <div class="team-preview text-center">
+      <h3>Meet Our Expert Team</h3>
+      <p class="team-description">
+        Our dedicated team works tirelessly to provide the best real estate services.
+      </p>
+
+      <div class="team-grid row justify-content-center">
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let member of team">
+          <div class="team-member">
+            <div class="member-image">
+              <img [src]="member.image" alt="Team Member" class="img-fluid">
+            </div>
+            <div class="member-info">
+              <h5>{{ member.name }}</h5>
+              <span>{{ member.role }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a routerLink="/team" class="view-team-btn">View Full Team</a>
+    </div>
+
+  </div>
+
+</section>
+

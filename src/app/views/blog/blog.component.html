@@ -1,0 +1,184 @@
+<main class="main">
+<header id="header" class="header d-flex align-items-center fixed-top">
+  <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+    <a routerLink="/" class="logo d-flex align-items-center me-auto me-xl-0">
+      <h1 class="sitename">ImmoSmart</h1>
+    </a>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+        <li><a routerLink="/properties" routerLinkActive="active">Properties</a></li>
+        <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
+        <li><a routerLink="/agents" routerLinkActive="active">Agents</a></li>
+        <li><a routerLink="/blog" routerLinkActive="active" class="active">Blog</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+
+    <a class="btn-getstarted" routerLink="/properties">>se connecter</a>
+  </div>
+</header>
+
+<!-- Page Title -->
+<div class="page-title">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1 class="heading-title">Our Blog</h1>
+          <p class="mb-0">
+            Stay updated with the latest real estate trends, market insights, and expert advice from the ImmoSmart team. Explore our articles to make informed decisions about buying, selling, or investing in property.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a routerLink="/">Home</a></li>
+        <li class="current">Blog</li>
+      </ol>
+    </div>
+  </nav>
+</div><!-- End Page Title -->
+
+<!-- Blog Hero Section -->
+<section id="blog-hero" class="blog-hero section">
+  <div class="container" data-aos="fade-up">
+    <div class="row g-4">
+
+      <!-- Left Side Posts -->
+      <div class="col-lg-3">
+        <div class="side-posts">
+          <article class="post-item side-post" *ngFor="let post of leftPosts; let i = index"
+                   [attr.data-aos-delay]="(i + 1) * 100" data-aos="fade-right">
+            <div class="post-img">
+              <img [src]="post.img" alt="Post Image" class="img-fluid" loading="lazy">
+              <span class="category" [ngClass]="post.categoryClass">{{ post.category }}</span>
+            </div>
+            <div class="post-content">
+              <h3 class="post-title">
+                <a routerLink="/blog-details">{{ post.title }}</a>
+              </h3>
+              <div class="post-meta">
+                <span>{{ post.date }}</span>
+                <span class="dot">•</span>
+                <span>{{ post.comments }} Comments</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Main Post -->
+      <div class="col-lg-6">
+        <article class="post-item main-post" data-aos="fade-up">
+          <div class="post-img">
+            <img [src]="mainPost.img" alt="Post Image" class="img-fluid">
+            <span class="category" [ngClass]="mainPost.categoryClass">{{ mainPost.category }}</span>
+          </div>
+          <div class="post-content">
+            <h2 class="post-title">
+              <a routerLink="/blog-details">{{ mainPost.title }}</a>
+            </h2>
+            <p class="post-excerpt">{{ mainPost.excerpt }}</p>
+            <div class="post-meta">
+              <span>{{ mainPost.date }}</span>
+              <span class="dot">•</span>
+              <span>{{ mainPost.comments }} Comments</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Right Side Posts -->
+      <div class="col-lg-3">
+        <div class="side-posts">
+          <article class="post-item side-post" *ngFor="let post of rightPosts; let i = index"
+                   [attr.data-aos-delay]="(i + 1) * 100" data-aos="fade-left">
+            <div class="post-img">
+              <img [src]="post.img" alt="Post Image" class="img-fluid" loading="lazy">
+              <span class="category" [ngClass]="post.categoryClass">{{ post.category }}</span>
+            </div>
+            <div class="post-content">
+              <h3 class="post-title">
+                <a routerLink="/blog-details">{{ post.title }}</a>
+              </h3>
+              <div class="post-meta">
+                <span>{{ post.date }}</span>
+                <span class="dot">•</span>
+                <span>{{ post.comments }} Comments</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Blog Posts Section -->
+<section id="blog-posts" class="blog-posts section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4">
+      <div class="col-lg-4" *ngFor="let post of posts">
+        <article>
+          <div class="post-img">
+            <img [src]="post.img" alt="" class="img-fluid">
+          </div>
+          <p class="post-category">{{ post.category }}</p>
+          <h2 class="title">
+            <a routerLink="/blog-details">{{ post.title }}</a>
+          </h2>
+          <div class="d-flex align-items-center">
+            <img [src]="post.authorImg" alt="" class="img-fluid post-author-img flex-shrink-0">
+            <div class="post-meta">
+              <p class="post-author">{{ post.author }}</p>
+              <p class="post-date">
+                <time [attr.datetime]="post.date">{{ post.dateDisplay }}</time>
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pagination Section -->
+<section id="pagination-2" class="pagination-2 section">
+  <div class="container">
+    <nav class="d-flex justify-content-center" aria-label="Page navigation">
+      <ul>
+        <li>
+          <a routerLink="#" aria-label="Previous page">
+            <i class="bi bi-arrow-left"></i>
+            <span class="d-none d-sm-inline">Previous</span>
+          </a>
+        </li>
+
+        <li><a routerLink="#" class="active">1</a></li>
+        <li><a routerLink="#">2</a></li>
+        <li><a routerLink="#">3</a></li>
+        <li class="ellipsis">...</li>
+        <li><a routerLink="#">8</a></li>
+        <li><a routerLink="#">9</a></li>
+        <li><a routerLink="#">10</a></li>
+
+        <li>
+          <a routerLink="#" aria-label="Next page">
+            <span class="d-none d-sm-inline">Next</span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+</main>
