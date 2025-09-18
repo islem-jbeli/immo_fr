@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // ✅ nécessaire pour *ngFor
+import { RouterModule } from '@angular/router';
+
 
 interface BlogPost {
   img: string;
@@ -11,7 +13,7 @@ interface BlogPost {
 @Component({
   selector: 'app-recent-blog-posts',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './recent-blog-posts.component.html',
   styleUrls: ['./recent-blog-posts.component.css']
 })

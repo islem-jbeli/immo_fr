@@ -1,6 +1,22 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
+interface Property {
+  image: string;
+  badges: string[];
+  price: string;
+  title: string;
+  location: string;
+  bedrooms: number;
+  bathrooms: number;
+  area: string;
+  agentName: string;
+  agentImage: string;
+  agentPhone: string;
+  type: 'sale' | 'rent';
+}
+
 @Component({
 selector: 'app-hero-section',
   standalone: true,

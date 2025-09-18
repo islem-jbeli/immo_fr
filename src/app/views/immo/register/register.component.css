@@ -1,5 +1,5 @@
 /* Plein écran avec image de fond */
-.login-page {
+.register-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@
 }
 
 /* Overlay sombre pour lisibilité */
-.login-page::before {
+.register-page::before {
   content: "";
   position: absolute;
   top: 0; left: 0;
@@ -25,7 +25,7 @@
 }
 
 /* Carte du formulaire */
-.login-card {
+.register-card {
   position: relative;
   z-index: 1;
   background: rgba(255, 255, 255, 0.95);
@@ -38,20 +38,20 @@
 }
 
 /* Logo */
-.login-card .logo {
+.register-card .logo {
   width: 70px;
   margin-bottom: 15px;
 }
 
 /* Titre */
-.login-card h2 {
+.register-card h2 {
   color: #0d6efd;
   margin-bottom: 1.5rem;
   font-weight: 600;
 }
 
 /* Inputs */
-.login-card input {
+.register-card input {
   width: 100%;
   padding: 0.75rem 0.75rem 0.75rem 40px;
   border-radius: 8px;
@@ -60,14 +60,14 @@
   transition: border 0.3s;
 }
 
-.login-card input:focus {
+.register-card input:focus {
   border-color: #0d6efd;
   outline: none;
   box-shadow: 0 0 8px rgba(13, 110, 253, 0.2);
 }
 
 /* Bouton */
-.login-card button {
+.register-card button {
   width: 100%;
   padding: 0.75rem;
   background: linear-gradient(to right, #0d6efd, #6610f2);
@@ -80,26 +80,26 @@
   transition: all 0.3s ease-in-out;
 }
 
-.login-card button:hover {
+.register-card button:hover {
   background: linear-gradient(to right, #6610f2, #0d6efd);
   transform: scale(1.05);
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 /* Liens */
-.login-card .links {
+.register-card .links {
   margin-top: 1.5rem;
   font-size: 0.9rem;
 }
 
-.login-card .links a {
+.register-card .links a {
   color: #0d6efd;
   text-decoration: none;
   margin: 0 10px;
   transition: color 0.3s;
 }
 
-.login-card .links a:hover {
+.register-card .links a:hover {
   color: #6610f2;
   text-decoration: underline;
 }

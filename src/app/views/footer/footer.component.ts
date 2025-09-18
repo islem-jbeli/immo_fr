@@ -25,20 +25,21 @@ interface SocialLink {
 })
 export class FooterComponent {
   companyLinks: Link[] = [
-    { text: 'About', url: '#' },
-    { text: 'Careers', url: '#' },
-    { text: 'Press', url: '#' },
-    { text: 'Blog', url: '#' },
-    { text: 'Contact', url: '#' }
+    { text: 'About', url: '/about' },
+    { text: 'Careers', url: '/services' },
+    { text: 'Press', url: '/agents' },
+    { text: 'Blog', url: '/blog' },
+    { text: 'Contact', url: '/contact' }
   ];
 
-  solutionsLinks: Link[] = [
-    { text: 'Digital Strategy', url: '#' },
-    { text: 'Cloud Computing', url: '#' },
-    { text: 'Data Analytics', url: '#' },
-    { text: 'AI Solutions', url: '#' },
-    { text: 'Cybersecurity', url: '#' }
-  ];
+solutionsLinks: Link[] = [
+  { text: 'Property Listings', url: '/properties' },
+  { text: 'Smart Recommendations', url: '/recommendations' },
+  { text: 'Dashboard', url: '/dashboard' },
+  { text: 'Agents', url: '/agents' },
+  { text: 'Contact', url: '/contact' }
+];
+
 
   contactItems: ContactItem[] = [
     { icon: 'bi bi-geo-alt', info: '15 Avenue Habib Bourguiba\Tunis 1001' },
@@ -55,9 +56,9 @@ export class FooterComponent {
   ];
 
   footerBottomLinks: Link[] = [
-    { text: 'Privacy Policy', url: '#' },
-    { text: 'Terms of Service', url: '#' },
-    { text: 'Cookie Policy', url: '#' }
+    { text: 'Privacy Policy', url: '/about' },
+    { text: 'Terms of Service', url: '/services' },
+    { text: 'Cookie Policy', url: '/contact' }
   ];
 
   currentYear: number = new Date().getFullYear();

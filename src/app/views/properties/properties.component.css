@@ -1,35 +1,226 @@
-/* Badge générique */
-.property-badges .badge {
-  font-size: 0.75rem;
-  padding: 6px 10px;
-  border-radius: 30px;
+
+
+
+
+/* === Page Title === */
+.page-title {
+  margin-bottom: 30px;
+}
+
+.page-title h1 {
+  font-size: 2.2rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
-/* Styles spécifiques */
-.badge.featured {
-  background-color: #ff9800;
+.page-title p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+
+
+/* === View Toggle === */
+.properties-header .btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.properties-header .btn.active {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* === Property Cards (Grid) === */
+.property-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.3s;
+  background: #fff;
+}
+
+.property-card:hover {
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.property-image {
+  position: relative;
+}
+
+.property-image img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.property-badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.property-badges .badge {
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  border-radius: 3px;
   color: #fff;
 }
 
-.badge.for-sale {
-  background-color: #4caf50;
+.badge.sale { background: #28a745; }
+.badge.new { background: #ffc107; }
+.badge.featured { background: #17a2b8; }
+
+.property-overlay {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.favorite-btn, .gallery-btn {
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.favorite-btn:hover, .gallery-btn:hover {
+  background: #007bff;
+}
+
+.property-content {
+  padding: 15px;
+}
+
+.property-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #007bff;
+  margin-bottom: 5px;
+}
+
+.property-title {
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.property-location {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.property-features span {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+/* === Agent Info === */
+.property-agent {
+  display: flex;
+  align-items: center;
+}
+
+.agent-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.agent-info {
+  margin-left: 10px;
+  font-size: 0.8rem;
+}
+
+/* === List View === */
+.properties-list .property-list-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.3s;
+  background: #fff;
+}
+
+.properties-list .property-list-item:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* === Sidebar === */
+.properties-sidebar {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.filter-widget h5 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.filter-section {
+  margin-bottom: 15px;
+}
+
+.filter-btn.active {
+  background: #007bff;
   color: #fff;
 }
 
-.badge.new {
-  background-color: #2196f3;
+/* === Featured Properties === */
+.featured-properties h5 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.featured-item img {
+  border-radius: 5px;
+}
+
+/* === Pagination === */
+.pagination .page-link {
+  color: #007bff;
+}
+
+.pagination .page-item.active .page-link {
+  background: #007bff;
+  border-color: #007bff;
   color: #fff;
 }
 
-.badge.bg-primary {
-  background-color: #007bff !important; /* tu peux supprimer si tu n’aimes pas */
-  color: #fff !important;
+.pagination .page-link:hover {
+  background: #007bff;
+  color: #fff;
+  transition: 0.3s;
 }
 
-.badge.bg-info {
-  background-color: #17a2b8 !important;
-  color: #fff !important;
+/* === Responsive === */
+@media (max-width: 992px) {
+  .properties-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .properties-header .sort-dropdown {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .col-lg-8, .col-lg-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .property-card, .property-list-item {
+    margin-bottom: 20px;
+  }
 }

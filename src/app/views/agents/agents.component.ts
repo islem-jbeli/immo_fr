@@ -21,28 +21,28 @@ interface Agent {
 export class AgentsComponent {
 
   featuredAgent = {
-    name: 'Emily Rodriguez',
+    name: 'Amira Jbeli',
     role: 'Senior Real Estate Advisor',
-    badges: ['Luxury Homes', 'Investment Properties', 'First-Time Buyers'],
+    badges: ['Villas', 'Apartments', 'Investments'],
     image: 'assets/img/real-estate/agent-1.webp',
     stats: [
-      { number: '150+', label: 'Properties Sold' },
-      { number: '$45M', label: 'Total Sales' },
-      { number: '5', label: 'Years Experience' }
+      { number: '120+', label: 'Properties Sold' },
+      { number: '15M TND', label: 'Total Sales' },
+      { number: '7', label: 'Years Experience' }
     ],
     contacts: [
-      { icon: 'bi-telephone', value: '+1 (555) 234-5678' },
-      { icon: 'bi-envelope', value: 'emily.rodriguez@example.com' },
-      { icon: 'bi-geo-alt', value: 'Downtown Miami Office' }
+      { icon: 'bi-telephone', value: '+216 21 234 567' },
+      { icon: 'bi-envelope', value: 'amira.jbeli@immosmart.tn' },
+      { icon: 'bi-geo-alt', value: 'Avenue Habib Bourguiba, Tunis' }
     ],
     socialLinks: ['linkedin', 'facebook', 'instagram', 'twitter']
   };
 
   teamAgents: Agent[] = [
-    { name: 'Michael Chen', role: 'Property Consultant', location: 'Brooklyn Heights', languages: ['English','Mandarin'], image: 'assets/img/real-estate/agent-2.webp' },
-    { name: 'Sarah Johnson', role: 'Commercial Specialist', location: 'Manhattan', languages: ['English','Spanish'], image: 'assets/img/real-estate/agent-3.webp', status: 'Verified' },
-    { name: 'David Martinez', role: 'Luxury Home Advisor', location: 'Upper East Side', languages: ['English','French'], image: 'assets/img/real-estate/agent-4.webp' },
-    { name: 'Lisa Thompson', role: 'Residential Specialist', location: 'Queens', languages: ['English'], image: 'assets/img/real-estate/agent-5.webp', status: 'New Agent' }
+    { name: 'Mohamed Ben Ali', role: 'Property Consultant', location: 'Tunis', languages: ['Arabic', 'French', 'English'], image: 'assets/img/real-estate/agent-2.webp' },
+    { name: 'Sonia Trabelsi', role: 'Commercial Specialist', location: 'Sousse', languages: ['Arabic', 'French'], image: 'assets/img/real-estate/agent-3.webp', status: 'Verified' },
+    { name: 'Walid Khalifa', role: 'Luxury Home Advisor', location: 'La Marsa', languages: ['Arabic', 'French', 'English'], image: 'assets/img/real-estate/agent-4.webp' },
+    { name: 'Leila Ben Romdhane', role: 'Residential Specialist', location: 'Ariana', languages: ['Arabic', 'French'], image: 'assets/img/real-estate/agent-5.webp', status: 'New Agent' }
   ];
 
 }

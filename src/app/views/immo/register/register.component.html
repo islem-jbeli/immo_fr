@@ -1,0 +1,35 @@
+<div class="register-page">
+  <div class="register-card">
+
+    <h2>Create an Account</h2>
+
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+      <div class="form-group">
+        <i class="fas fa-user"></i>
+        <input type="text" name="fullname" ngModel placeholder="Full Name" required />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" name="email" ngModel placeholder="Email Address" required />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="password" ngModel placeholder="Password" required />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="confirmPassword" ngModel placeholder="Confirm Password" required />
+      </div>
+
+      <button type="submit">Create Account</button>
+    </form>
+
+    <div class="links">
+      <span>Already have an account?</span>
+      <a routerLink="/login">Login</a>
+    </div>
+  </div>
+</div>

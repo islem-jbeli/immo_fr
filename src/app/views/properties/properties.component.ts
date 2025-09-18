@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';   // 👈 nécessaire pour [(ngModel)]
-import * as AOS from 'aos';
+import { FormsModule } from '@angular/forms'; // pour [(ngModel)]
+
+interface Badge {
+  text: string;
+  class: string;
+}
 
 interface Agent {
   name: string;
@@ -11,17 +15,24 @@ interface Agent {
 }
 
 interface Property {
-  id: number;
+  image: string;
+  badges: Badge[];
+  price: string;
+  title: string;
+  location: string;
+  beds: number;
+  baths: number;
+  area: string;
+  agent: Agent;
+  type: 'sale' | 'rent';
+  galleryCount?: number;
+}
+
+interface FeaturedProperty {
   title: string;
   location: string;
   price: string;
-  type?: string;
-  badges: { text: string; class: string }[];  // Toujours objet
   image: string;
-  beds: number;
-  baths: number;
-  size: string;
-  agent: Agent;
 }
 
 @Component({
@@ -31,93 +42,71 @@ interface Property {
   templateUrl: './properties.component.html',
   styleUrls: ['./properties.component.css']
 })
-export class PropertiesComponent implements OnInit {
-  viewMode: 'grid' | 'list' = 'grid';
-  sortOption: string = 'newest';
+export class PropertiesComponent {
+  view: 'grid' | 'list' = 'grid';
 
   properties: Property[] = [
     {
-      id: 1,
-      title: 'Modern Family Home with Garden',
-      location: '2847 Oak Street, Beverly Hills, CA 90210',
-      price: '$875,000',
-      type: 'For Sale',
-      badges: [
-        { text: 'Featured', class: 'featured' },
-        { text: 'For Sale', class: 'for-sale' }
-      ],
       image: 'assets/img/real-estate/property-exterior-1.webp',
+      badges: [{ text: 'Featured', class: 'featured' }, { text: 'For Sale', class: 'for-sale' }],
+      price: '875,000 TND',
+      title: 'Maison Familiale Moderne avec Jardin',
+      location: 'Tunis, Ariana',
       beds: 4,
       baths: 3,
-      size: '2,400 sqft',
-      agent: {
-        name: 'Sarah Johnson',
-        phone: '+1 (555) 123-4567',
-        avatar: 'assets/img/real-estate/agent-1.webp'
-      }
+      area: '220 m²',
+      agent: { name: 'Sarah Johnson', phone: '+216 20 123 456', avatar: 'assets/img/real-estate/agent-1.webp' },
+      type: 'sale',
+      galleryCount: 12
     },
     {
-      id: 2,
-      title: 'Downtown Luxury Condominium',
-      location: '1542 Main Avenue, Manhattan, NY 10001',
-      price: '$1,250,000',
-      type: 'For Sale',
-      badges: [
-        { text: 'New', class: 'new' },
-        { text: 'For Sale', class: 'for-sale' }
-      ],
       image: 'assets/img/real-estate/property-exterior-3.webp',
+      badges: [{ text: 'New', class: 'new' }, { text: 'For Sale', class: 'for-sale' }],
+      price: '1,250,000 TND',
+      title: 'Condominium de Luxe au Centre-ville',
+      location: 'Sfax, Route de Sidi Mansour',
       beds: 2,
       baths: 2,
-      size: '1,800 sqft',
-      agent: {
-        name: 'Michael Chen',
-        phone: '+1 (555) 234-5678',
-        avatar: 'assets/img/real-estate/agent-3.webp'
-      }
+      area: '180 m²',
+      agent: { name: 'Michael Chen', phone: '+216 22 234 567', avatar: 'assets/img/real-estate/agent-3.webp' },
+      type: 'sale',
+      galleryCount: 8
     },
     {
-      id: 3,
-      title: 'Spacious Suburban Villa',
-      location: '789 Pine Ridge Drive, Austin, TX 73301',
-      price: '$4,500/month',
-      type: 'For Rent',
-      badges: [
-        { text: 'For Rent', class: 'bg-primary' }
-      ],
       image: 'assets/img/real-estate/property-interior-4.webp',
+      badges: [{ text: 'For Rent', class: 'for-rent' }],
+      price: '4,500 TND / mois',
+      title: 'Villa Spacieuse en Banlieue',
+      location: 'Sousse, Khezama',
       beds: 5,
       baths: 4,
-      size: '3,200 sqft',
-      agent: {
-        name: 'Emma Rodriguez',
-        phone: '+1 (555) 345-6789',
-        avatar: 'assets/img/real-estate/agent-5.webp'
-      }
+      area: '320 m²',
+      agent: { name: 'Emma Rodriguez', phone: '+216 23 345 678', avatar: 'assets/img/real-estate/agent-5.webp' },
+      type: 'rent',
+      galleryCount: 15
     },
     {
-      id: 4,
-      title: 'Waterfront Townhouse with Dock',
-      location: '456 Harbor View Lane, Miami, FL 33101',
-      price: '$695,000',
-      type: 'For Sale',
-      badges: [
-        { text: 'Open House', class: 'bg-info' },
-        { text: 'For Sale', class: 'for-sale' }
-      ],
       image: 'assets/img/real-estate/property-exterior-6.webp',
+      badges: [{ text: 'Open House', class: 'open-house' }, { text: 'For Sale', class: 'for-sale' }],
+      price: '695,000 TND',
+      title: 'Maison en Bord de Mer avec Quai',
+      location: 'Hammamet, Zone Touristique',
       beds: 3,
       baths: 2,
-      size: '2,100 sqft',
-      agent: {
-        name: 'David Williams',
-        phone: '+1 (555) 456-7890',
-        avatar: 'assets/img/real-estate/agent-7.webp'
-      }
+      area: '210 m²',
+      agent: { name: 'David Williams', phone: '+216 24 456 789', avatar: 'assets/img/real-estate/agent-7.webp' },
+      type: 'sale',
+      galleryCount: 20
     }
   ];
 
-  ngOnInit(): void {
-    AOS.init();
+  featuredProperties: FeaturedProperty[] = [
+    { title: 'Penthouse de Luxe', location: 'Tunis, Berges du Lac', price: '2,850,000 TND', image: 'assets/img/real-estate/property-exterior-8.webp' },
+    { title: 'Studio Moderne', location: 'Sfax, Centre-ville', price: '3,200 TND / mois', image: 'assets/img/real-estate/property-interior-7.webp' },
+    { title: 'Maison Familiale', location: 'Sousse, Port El Kantaoui', price: '895,000 TND', image: 'assets/img/real-estate/property-exterior-9.webp' }
+  ];
+
+  toggleView(viewType: 'grid' | 'list') {
+    this.view = viewType;
   }
 }
