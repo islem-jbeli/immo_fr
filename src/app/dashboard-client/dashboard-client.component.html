@@ -1,2 +1,138 @@
-<h2>Dashboard Client</h2>
-<p>Bienvenue sur le tableau de bord du client.</p>
+<div class="container-fluid mt-4">
+  <div class="row">
+
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <div class="list-group shadow-sm rounded-3">
+        <a class="list-group-item list-group-item-action active">
+          <i class="fas fa-tachometer-alt me-2"></i> Mon Dashboard
+        </a>
+        <a class="list-group-item list-group-item-action"><i class="fas fa-user me-2"></i> Mon Profil</a>
+        <a class="list-group-item list-group-item-action"><i class="fas fa-building me-2"></i> Mes Annonces</a>
+        <a class="list-group-item list-group-item-action"><i class="fas fa-heart me-2"></i> Mes Favoris</a>
+        <a class="list-group-item list-group-item-action"><i class="fas fa-envelope me-2"></i> Mes Messages</a>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="col-md-9">
+      <h3 class="mb-4 fw-bold text-primary">Bienvenue, {{ userName }}</h3>
+
+     <!-- Stat cards améliorées -->
+<div class="row g-4">
+  <div class="col-md-3">
+    <div class="card text-center shadow-lg p-3 border-0 rounded-3 hover-scale" style="background: linear-gradient(135deg,#6a11cb,#2575fc); color:#fff;">
+      <i class="fas fa-building fa-2x mb-2"></i>
+      <h5 class="fw-bold">{{ totalProperties }}</h5>
+      <p class="small">Annonces publiées</p>
+      <div class="progress rounded-pill" style="height: 6px;">
+        <div class="progress-bar bg-light" role="progressbar" style="width: 70%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-center shadow-lg p-3 border-0 rounded-3 hover-scale" style="background: linear-gradient(135deg,#ff416c,#ff4b2b); color:#fff;">
+      <i class="fas fa-heart fa-2x mb-2"></i>
+      <h5 class="fw-bold">{{ totalFavorites }}</h5>
+      <p class="small">Favoris</p>
+      <div class="progress rounded-pill" style="height: 6px;">
+        <div class="progress-bar bg-light" role="progressbar" style="width: 50%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-center shadow-lg p-3 border-0 rounded-3 hover-scale" style="background: linear-gradient(135deg,#00b09b,#96c93d); color:#fff;">
+      <i class="fas fa-envelope fa-2x mb-2"></i>
+      <h5 class="fw-bold">{{ totalMessages }}</h5>
+      <p class="small">Messages</p>
+      <div class="progress rounded-pill" style="height: 6px;">
+        <div class="progress-bar bg-light" role="progressbar" style="width: 85%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-center shadow-lg p-3 border-0 rounded-3 hover-scale" style="background: linear-gradient(135deg,#f7971e,#ffd200); color:#fff;">
+      <i class="fas fa-eye fa-2x mb-2"></i>
+      <h5 class="fw-bold">{{ totalVisits }}</h5>
+      <p class="small">Visites</p>
+      <div class="progress rounded-pill" style="height: 6px;">
+        <div class="progress-bar bg-light" role="progressbar" style="width: 60%"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      <!-- Charts -->
+      <div class="row mt-4 g-4">
+        <div class="col-md-6">
+          <div class="card shadow-sm p-3">
+            <h5 class="fw-bold"><i class="fas fa-chart-line me-2 text-primary"></i> Annonces</h5>
+            <canvas id="propertiesChart"></canvas>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow-sm p-3">
+            <h5 class="fw-bold"><i class="fas fa-eye me-2 text-success"></i> Visites</h5>
+            <canvas id="visitsChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table des annonces -->
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <div class="card shadow-sm">
+            <div class="card-header"><i class="fas fa-bullhorn me-2"></i> Annonces récentes</div>
+            <div class="card-body p-2">
+              <table class="table table-sm">
+                <thead>
+                  <tr><th>Titre</th><th>Ville</th><th>Statut</th></tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let prop of properties">
+                    <td>{{prop.title}}</td>
+                    <td>{{prop.city}}</td>
+                    <td>
+                      <span class="badge" [ngClass]="{
+                        'badge-primary': prop.status==='Publiée',
+                        'badge-warning text-dark': prop.status==='Brouillon'
+                      }">{{prop.status}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table messages -->
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <div class="card shadow-sm">
+            <div class="card-header"><i class="fas fa-envelope me-2"></i> Messages récents</div>
+            <div class="card-body p-2">
+              <table class="table table-sm">
+                <thead>
+                  <tr><th>De</th><th>Sujet</th><th>Date</th></tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let msg of messages">
+                    <td>{{msg.from}}</td>
+                    <td>{{msg.subject}}</td>
+                    <td>{{msg.date}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

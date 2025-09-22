@@ -117,7 +117,9 @@
   "src/assets/vendor/glightbox/css/glightbox.min.css",
   "src/assets/vendor/swiper/swiper-bundle.min.css",
   
-  "src/assets/vendor/drift-zoom/drift-basic.css"
+  "src/assets/vendor/drift-zoom/drift-basic.css",
+    "https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+  "https://use.fontawesome.com/releases/v5.15.4/css/all.css"
   
 
 ],
@@ -144,7 +146,10 @@
   "src/assets/vendor/glightbox/js/glightbox.min.js",
   "src/assets/vendor/swiper/swiper-bundle.min.js",
   "src/assets/vendor/drift-zoom/Drift.min.js",
-  "src/assets/js/main.js"
+  "src/assets/js/main.js",
+  "https://code.jquery.com/jquery-3.2.1.slim.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js",
+  "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 ]
 
 

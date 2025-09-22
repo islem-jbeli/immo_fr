@@ -10,9 +10,15 @@ import { LoginComponent } from './views/immo/login/login.component';
 import { RegisterComponent } from './views/immo/register/register.component';
 import { ForgotPasswordComponent } from './views/immo/forgot-password/forgot-password.component';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardClientComponent } from './dashboard-client/dashboard-client.component';
+
+
 
 
 export const routes: Routes = [
+
+
   { path: '', component: HomeComponent },     // route d'accueil
   { path: 'about', component: AboutComponent } ,// route About
     { path: 'properties', component: PropertiesComponent },
@@ -22,11 +28,14 @@ export const routes: Routes = [
                 { path: 'contact', component: ContactComponent },
                  { path: 'login', component: LoginComponent }, // ✅ sans quotes
   { path: 'register', component: RegisterComponent },
-
-{ path: 'forgot-password', component: ForgotPasswordComponent }
-
+{ path: 'forgot-password', component: ForgotPasswordComponent },
 
 
+
+{ path: 'dashboard', component: DashboardComponent },
+
+
+  { path: 'user/dashboard', component: DashboardClientComponent }
 
   
 ];

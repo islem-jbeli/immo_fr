@@ -1,372 +1,453 @@
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ImmoSmart - Dashboard</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm px-4">
+  <a class="navbar-brand font-weight-bold d-flex align-items-center" routerLink="#">
+    <i class="fas fa-home text-primary mr-2"></i> ImmoSmart
+  </a>
 
-</head>
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
-  <a class="navbar-brand font-weight-bold" href="#"><i class="fas fa-home text-primary"></i> ImmoSmart</a>
-
+  <!-- Barre de recherche -->
   <form class="form-inline mx-auto w-50">
-    <input class="form-control w-100" type="search" placeholder="Rechercher..." aria-label="Recherche" />
+    <input class="form-control search-input w-100" type="search" placeholder="Rechercher..." aria-label="Recherche" />
   </form>
 
-  <ul class="navbar-nav">
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-        <img src="https://www.portraitprofessionnel.fr/wp-content/uploads/2022/02/Photographe_profesionnel_portrait_studio_a_Paris-1.jpg" alt="Avatar utilisateur" class="rounded-circle mr-2" width="30" height="30" />
-        <span>Islem</span>
-      </a>
-      <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="#"><i class="fas fa-user"></i> Profil</a>
-        <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Paramètres</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-      </div>
-    </li>
-  </ul>
-  <a class="btn btn-outline-primary btn-sm ml-2" data-toggle="modal" data-target="#loginModal">
-    <i class="fas fa-sign-in-alt"></i> Connexion
-  </a>
+  <!-- Avatar utilisateur -->
+ <ul class="navbar-nav">
+  <li class="nav-item dropdown">
+    <a class="nav-link d-flex align-items-center" (click)="toggleDropdown()" style="cursor:pointer; position: relative;">
+      <img src="https://www.portraitprofessionnel.fr/wp-content/uploads/2022/02/Photographe_profesionnel_portrait_studio_a_Paris-1.jpg" 
+           alt="Avatar utilisateur" class="rounded-circle avatar mr-2" />
+      <span class="user-name">Islem</span>
+      
+      <!-- Fleche animée / “flesh” -->
+      <span class="flesh-badge"></span>
+      
+      <i class="fas fa-chevron-down ml-1" [ngClass]="{'fa-rotate-180': isDropdownOpen}"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right shadow-sm" [class.show]="isDropdownOpen">
+      <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i> Profil</a>
+      <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i> Paramètres</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt mr-2"></i> Déconnexion</a>
+    </div>
+  </li>
+</ul>
+
 </nav>
+
 
 <div class="container-fluid">
   <div class="row">
 
     <!-- Sidebar -->
-   <nav class="col-lg-2 col-md-3 sidebar">
-  <h4><i class="fas fa-home"></i> ImmoSmart</h4>
-  <ul class="nav flex-column">
+    <nav class="col-lg-2 col-md-3 sidebar bg-light vh-100 p-3">
+      <h4 class="mb-4"><i class="fas fa-home"></i> ImmoSmart</h4>
+      <ul class="nav flex-column">
 
-    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <!-- Dashboard -->
+        <li class="nav-item">
+          <a routerLink="/dashboard" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard-admin</a>
+        </li>
 
+        <!-- Utilisateurs -->
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('users')">
+            <span><i class="fas fa-users"></i> Utilisateurs</span>
+            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.users, 'fa-chevron-up': menus.users}"></i>
+          </a>
+          <ul class="list-unstyled pl-3" *ngIf="menus.users">
+            <li><a routerLink="/admin/users" class="nav-link">👥 Liste des utilisateurs</a></li>
+            <li><a href="#" class="nav-link">🔍 Rechercher / filtrer / trier</a></li>
+            <li><a href="#" class="nav-link">✅ Activer / désactiver un compte</a></li>
+            <li><a href="#" class="nav-link">🛠 Modifier un utilisateur</a></li>
+            <li><a href="#" class="nav-link">❌ Supprimer un utilisateur</a></li>
+            <li><a href="#" class="nav-link">📊 Statistiques des utilisateurs</a></li>
+          </ul>
+        </li>
 
+        <!-- Annonces -->
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('properties')">
+            <span><i class="fas fa-bullhorn"></i> Annonces</span>
+            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.properties, 'fa-chevron-up': menus.properties}"></i>
+          </a>
+          <ul class="list-unstyled pl-3" *ngIf="menus.properties">
+            <li><a routerLink="/admin/properties" class="nav-link">🏘️ Liste des annonces</a></li>
+            <li><a href="#" class="nav-link">✅ Valider / refuser</a></li>
+            <li><a href="#" class="nav-link">📝 Modifier / supprimer</a></li>
+            <li><a href="#" class="nav-link">🔍 Filtrer par ville / type / statut</a></li>
+            <li><a href="#" class="nav-link">📅 Par date de publication</a></li>
+            <li><a href="#" class="nav-link">📊 Statistiques des annonces</a></li>
+          </ul>
+        </li>
 
-    <!-- Utilisateurs -->
-    <li class="nav-item">
-      <a href="#usersSubMenu" class="nav-link" data-toggle="collapse" aria-expanded="false">
-        <i class="fas fa-users"></i> Utilisateurs
-      </a>
-      <ul class="collapse list-unstyled pl-3" id="usersSubMenu">
-        <li><a href="#" class="nav-link">👥 Liste des utilisateurs</a></li>
-        <li><a href="#" class="nav-link">🔍 Rechercher / filtrer / trier</a></li>
-        <li><a href="#" class="nav-link">✅ Activer / désactiver un compte</a></li>
-        <li><a href="#" class="nav-link">🛠 Modifier un utilisateur</a></li>
-        <li><a href="#" class="nav-link">❌ Supprimer un utilisateur</a></li>
-        <li><a href="#" class="nav-link">📊 Statistiques des utilisateurs</a></li>
+        <!-- Signalements -->
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('signalements')">
+            <span><i class="fas fa-exclamation-triangle"></i> Signalements</span>
+            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.signalements, 'fa-chevron-up': menus.signalements}"></i>
+          </a>
+          <ul class="list-unstyled pl-3" *ngIf="menus.signalements">
+            <li><a href="#" class="nav-link">🚩 Voir les signalements</a></li>
+            <li><a href="#" class="nav-link">🛡 Prendre des actions</a></li>
+          </ul>
+        </li>
+
+        <!-- Villes & Devises -->
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('villesDevises')">
+            <span><i class="fas fa-city"></i> Villes & Devises</span>
+            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.villesDevises, 'fa-chevron-up': menus.villesDevises}"></i>
+          </a>
+          <ul class="list-unstyled pl-3" *ngIf="menus.villesDevises">
+            <li><a href="#" class="nav-link">🏙️ Gérer les villes</a></li>
+            <li><a href="#" class="nav-link">💱 Gérer les devises</a></li>
+          </ul>
+        </li>
+
+        <!-- Recommandations IA -->
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('ia')">
+            <span><i class="fas fa-robot"></i> Recommandations IA</span>
+            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.ia, 'fa-chevron-up': menus.ia}"></i>
+          </a>
+          <ul class="list-unstyled pl-3" *ngIf="menus.ia">
+            <li><a href="#" class="nav-link">🤖 Voir performances</a></li>
+            <li><a href="#" class="nav-link">🔄 Relancer suggestions</a></li>
+            <li><a href="#" class="nav-link">📈 Suivi de l’engagement</a></li>
+          </ul>
+        </li>
+
+        <!-- Statistiques -->
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('stats')">
+            <span><i class="fas fa-chart-bar"></i> Statistiques</span>
+            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.stats, 'fa-chevron-up': menus.stats}"></i>
+          </a>
+          <ul class="list-unstyled pl-3" *ngIf="menus.stats">
+            <li><a href="#" class="nav-link">📊 Inscriptions par mois</a></li>
+            <li><a href="#" class="nav-link">📊 Connexions quotidiennes</a></li>
+            <li><a href="#" class="nav-link">📊 Villes les plus recherchées</a></li>
+            <li><a href="#" class="nav-link">📊 Biens les plus populaires</a></li>
+            <li><a href="#" class="nav-link">📊 Taux de conversion</a></li>
+            <li><a href="#" class="nav-link">📥 Export CSV/PDF</a></li>
+          </ul>
+        </li>
+
+        <!-- Rôles & Accès -->
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('roles')">
+            <span><i class="fas fa-user-shield"></i> Rôles & Accès</span>
+            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.roles, 'fa-chevron-up': menus.roles}"></i>
+          </a>
+          <ul class="list-unstyled pl-3" *ngIf="menus.roles">
+            <li><a href="#" class="nav-link">🔐 Affecter des rôles</a></li>
+            <li><a href="#" class="nav-link">🔧 Gérer les permissions</a></li>
+          </ul>
+        </li>
+
+        <!-- Messages -->
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('messages')">
+            <span><i class="fas fa-envelope"></i> Messages</span>
+            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.messages, 'fa-chevron-up': menus.messages}"></i>
+          </a>
+          <ul class="list-unstyled pl-3" *ngIf="menus.messages">
+            <li><a href="#" class="nav-link">📬 Messages reçus</a></li>
+            <li><a href="#" class="nav-link">🔔 Notifications globales</a></li>
+            <li><a href="#" class="nav-link">📢 Annonces officielles</a></li>
+          </ul>
+        </li>
+
+        <!-- Paramètres -->
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('parametres')">
+            <span><i class="fas fa-cog"></i> Paramètres</span>
+            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.parametres, 'fa-chevron-up': menus.parametres}"></i>
+          </a>
+          <ul class="list-unstyled pl-3" *ngIf="menus.parametres">
+            <li><a href="#" class="nav-link">⚙️ Infos générales</a></li>
+            <li><a href="#" class="nav-link">🌐 Langues supportées</a></li>
+            <li><a href="#" class="nav-link">⏳ Durée de publication</a></li>
+          </ul>
+        </li>
+
+        <!-- Journal d’activité -->
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('journal')">
+            <span><i class="fas fa-history"></i> Journal</span>
+            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.journal, 'fa-chevron-up': menus.journal}"></i>
+          </a>
+          <ul class="list-unstyled pl-3" *ngIf="menus.journal">
+            <li><a href="#" class="nav-link">🕵️ Historique des actions</a></li>
+            <li><a href="#" class="nav-link">📅 Logs de connexion</a></li>
+          </ul>
+        </li>
+
       </ul>
-    </li>
+    </nav>
 
-    <!-- Annonces -->
-    <li class="nav-item">
-      <a href="#annoncesSubMenu" class="nav-link" data-toggle="collapse" aria-expanded="false">
-        <i class="fas fa-bullhorn"></i> Annonces
-      </a>
-      <ul class="collapse list-unstyled pl-3" id="annoncesSubMenu">
-        <li><a href="#" class="nav-link">🏘️ Liste des annonces</a></li>
-        <li><a href="#" class="nav-link">✅ Valider / refuser</a></li>
-        <li><a href="#" class="nav-link">📝 Modifier / supprimer</a></li>
-        <li><a href="#" class="nav-link">🔍 Filtrer par ville / type / statut</a></li>
-        <li><a href="#" class="nav-link">📅 Par date de publication</a></li>
-        <li><a href="#" class="nav-link">📊 Statistiques des annonces</a></li>
-      </ul>
-    </li>
+    <!-- Main -->
+    <main class="col-lg-10 col-md-9 p-4">
 
-    <!-- Signalements -->
-    <li class="nav-item">
-      <a href="#signalementsSubMenu" class="nav-link" data-toggle="collapse" aria-expanded="false">
-        <i class="fas fa-exclamation-triangle"></i> Signalements
-      </a>
-      <ul class="collapse list-unstyled pl-3" id="signalementsSubMenu">
-        <li><a href="#" class="nav-link">🚩 Voir les signalements</a></li>
-        <li><a href="#" class="nav-link">🛡 Prendre des actions</a></li>
-      </ul>
-    </li>
-
-    <!-- Villes & Devises -->
-    <li class="nav-item">
-      <a href="#villesDevisesSubMenu" class="nav-link" data-toggle="collapse" aria-expanded="false">
-        <i class="fas fa-city"></i> Villes & Devises
-      </a>
-      <ul class="collapse list-unstyled pl-3" id="villesDevisesSubMenu">
-        <li><a href="#" class="nav-link">🏙️ Gérer les villes</a></li>
-        <li><a href="#" class="nav-link">💱 Gérer les devises</a></li>
-      </ul>
-    </li>
-
-    <!-- Recommandations IA -->
-    <li class="nav-item">
-      <a href="#iaSubMenu" class="nav-link" data-toggle="collapse" aria-expanded="false">
-        <i class="fas fa-robot"></i> Recommandations IA
-      </a>
-      <ul class="collapse list-unstyled pl-3" id="iaSubMenu">
-        <li><a href="#" class="nav-link">🤖 Voir performances</a></li>
-        <li><a href="#" class="nav-link">🔄 Relancer suggestions</a></li>
-        <li><a href="#" class="nav-link">📈 Suivi de l’engagement</a></li>
-      </ul>
-    </li>
-
-    <!-- Statistiques -->
-    <li class="nav-item">
-      <a href="#statsSubMenu" class="nav-link" data-toggle="collapse" aria-expanded="false">
-        <i class="fas fa-chart-bar"></i> Statistiques
-      </a>
-      <ul class="collapse list-unstyled pl-3" id="statsSubMenu">
-        <li><a href="#" class="nav-link">📊 Inscriptions par mois</a></li>
-        <li><a href="#" class="nav-link">📊 Connexions quotidiennes</a></li>
-        <li><a href="#" class="nav-link">📊 Villes les plus recherchées</a></li>
-        <li><a href="#" class="nav-link">📊 Biens les plus populaires</a></li>
-        <li><a href="#" class="nav-link">📊 Taux de conversion</a></li>
-        <li><a href="#" class="nav-link">📥 Export CSV/PDF</a></li>
-      </ul>
-    </li>
-
-    <!-- Rôles -->
-    <li class="nav-item">
-      <a href="#rolesSubMenu" class="nav-link" data-toggle="collapse" aria-expanded="false">
-        <i class="fas fa-user-shield"></i> Rôles & Accès
-      </a>
-      <ul class="collapse list-unstyled pl-3" id="rolesSubMenu">
-        <li><a href="#" class="nav-link">🔐 Affecter des rôles</a></li>
-        <li><a href="#" class="nav-link">🔧 Gérer les permissions</a></li>
-      </ul>
-    </li>
-
-    <!-- Messages -->
-    <li class="nav-item">
-      <a href="#messagesSubMenu" class="nav-link" data-toggle="collapse" aria-expanded="false">
-        <i class="fas fa-envelope"></i> Messages
-      </a>
-      <ul class="collapse list-unstyled pl-3" id="messagesSubMenu">
-        <li><a href="#" class="nav-link">📬 Messages reçus</a></li>
-        <li><a href="#" class="nav-link">🔔 Notifications globales</a></li>
-        <li><a href="#" class="nav-link">📢 Annonces officielles</a></li>
-      </ul>
-    </li>
-
-    <!-- Paramètres -->
-    <li class="nav-item">
-      <a href="#parametresSubMenu" class="nav-link" data-toggle="collapse" aria-expanded="false">
-        <i class="fas fa-cog"></i> Paramètres
-      </a>
-      <ul class="collapse list-unstyled pl-3" id="parametresSubMenu">
-        <li><a href="#" class="nav-link">⚙️ Infos générales</a></li>
-        <li><a href="#" class="nav-link">🌐 Langues supportées</a></li>
-        <li><a href="#" class="nav-link">⏳ Durée de publication</a></li>
-      </ul>
-    </li>
-
-    <!-- Journal d’activité -->
-    <li class="nav-item">
-      <a href="#journalSubMenu" class="nav-link" data-toggle="collapse" aria-expanded="false">
-        <i class="fas fa-history"></i> Journal
-      </a>
-      <ul class="collapse list-unstyled pl-3" id="journalSubMenu">
-        <li><a href="#" class="nav-link">🕵️ Historique des actions</a></li>
-        <li><a href="#" class="nav-link">📅 Logs de connexion</a></li>
-      </ul>
-    </li>
-
-  </ul>
-</nav>
-
-
-
-   <!-- Main -->
-      <main class="col-lg-10 col-md-9 p-4">
-
-        <!-- Statistiques principales -->
-        <div class="row mb-4">
-          <div class="col-md-3">
-            <div class="card-stat bg-primary">
-              <h5><i class="fas fa-users"></i> 1250</h5>
-              <p>👤 Utilisateurs inscrits</p>
-            </div>
+      <!-- Statistiques principales -->
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div class="card-stat bg-primary">
+            <h5><i class="fas fa-users"></i> {{usersCount}}</h5>
+            <p>👤 Utilisateurs inscrits</p>
           </div>
-          <div class="col-md-3">
-            <div class="card-stat bg-info">
-              <h5><i class="fas fa-home"></i> 230</h5>
-              <p>🏠 Annonces actives</p>
-            </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-stat bg-info">
+            <h5><i class="fas fa-home"></i> {{propertiesCount}}</h5>
+            <p>🏠 Annonces actives</p>
           </div>
-          <div class="col-md-3">
-            <div class="card-stat bg-danger">
-              <h5><i class="fas fa-exclamation-circle"></i> 12</h5>
-              <p>🚨 Contenus signalés</p>
-            </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-stat bg-danger">
+            <h5><i class="fas fa-exclamation-circle"></i> {{reportsCount}}</h5>
+            <p>🚨 Contenus signalés</p>
           </div>
-          <div class="col-md-3">
-            <div class="card-stat bg-warning text-dark">
-              <h5><i class="fas fa-map-marker-alt"></i> 50</h5>
-              <p>🌍 Villes couvertes</p>
+        </div>
+        <div class="col-md-3">
+          <div class="card-stat bg-warning text-dark">
+            <h5><i class="fas fa-map-marker-alt"></i> {{citiesCount}}</h5>
+            <p>🌍 Villes couvertes</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tables utilisateurs et annonces -->
+      <div class="row">
+
+        <!-- Derniers utilisateurs -->
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <i class="fas fa-users-cog mr-2"></i> 📋 Derniers utilisateurs
+            </div>
+            <div class="card-body p-2">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Rôle</th>
+                    <th>Statut</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users">
+                    <td>{{user.name}}</td>
+                    <td>{{user.role}}</td>
+                    <td>
+                      <span class="badge" [ngClass]="{
+                        'badge-success': user.status==='Actif',
+                        'badge-secondary': user.status==='Inactif'
+                      }">
+                        {{user.status}}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
-        <!-- Tables -->
-        <div class="row">
-          <div class="col-md-6 mb-4">
-            <div class="card shadow-sm">
-              <div class="card-header">
-                <i class="fas fa-users-cog mr-2"></i> 📋 Derniers utilisateurs
-              </div>
-              <div class="card-body p-2">
-                <table class="table table-sm">
-                  <thead>
-                    <tr>
-                      <th>Nom</th>
-                      <th>Rôle</th>
-                      <th>Statut</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Jean Dupont</td>
-                      <td>Propriétaire</td>
-                      <td><span class="badge badge-success badge-status">🟢 Actif</span></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Marie Martin</strong></td>
-                      <td>Agent</td>
-                      <td><span class="badge badge-secondary badge-status">⚪ Inactif</span></td>
-                    </tr>
-                    <tr>
-                      <td>Pierre Durand</td>
-                      <td>Acheteur</td>
-                      <td><span class="badge badge-success badge-status">🟢 Actif</span></td>
-                    </tr>
-                    <tr>
-                      <td>Sophie Leforre</td>
-                      <td>Propriétaire</td>
-                      <td><span class="badge badge-success badge-status">🟢 Actif</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        <!-- Annonces récentes -->
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <i class="fas fa-bullhorn mr-2"></i> 📝 Annonces récentes
             </div>
-          </div>
-
-          <div class="col-md-6 mb-4">
-            <div class="card shadow-sm">
-              <div class="card-header">
-                <i class="fas fa-bullhorn mr-2"></i> 📝 Annonces récentes
-              </div>
-              <div class="card-body p-2">
-                <table class="table table-sm">
-                  <thead>
-                    <tr>
-                      <th>Titre</th>
-                      <th>Ville</th>
-                      <th>Statut</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Appartement</td>
-                      <td>Paris</td>
-                      <td><span class="badge badge-primary badge-status">🔵 Publiée</span></td>
-                    </tr>
-                    <tr>
-                      <td>Villa avec piscine</td>
-                      <td>Marseille</td>
-                      <td><span class="badge badge-warning badge-status text-dark">🟡 Brouillon</span></td>
-                    </tr>
-                    <tr>
-                      <td>Maison de ville</td>
-                      <td>Lyon</td>
-                      <td><span class="badge badge-danger badge-status">🔴 Refusée</span></td>
-                    </tr>
-                    <tr>
-                      <td>Maison ancienne</td>
-                      <td>Dijon</td>
-                      <td><span class="badge badge-info badge-status">🔷 Acceptée</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="card-body p-2">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Titre</th>
+                    <th>Ville</th>
+                    <th>Statut</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let prop of properties">
+                    <td>{{prop.title}}</td>
+                    <td>{{prop.city}}</td>
+                    <td>
+                      <span class="badge" [ngClass]="{
+                        'badge-primary': prop.status==='Publiée',
+                        'badge-warning text-dark': prop.status==='Brouillon',
+                        'badge-danger': prop.status==='Refusée',
+                        'badge-info': prop.status==='Acceptée'
+                      }">
+                        {{prop.status}}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
-        <!-- Bas de page -->
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card mb-3 shadow-sm">
-              <div class="card-header">
-                <i class="fas fa-chart-line mr-2"></i> Évolution des inscriptions
-              </div>
-              <div class="card-body">
-                <p>Inscriptions par mois</p>
-                <img src="https://quickchart.io/chart?c={type:'line',data:{labels:['Jan','Fév','Mar','Avr','Mai','Juin'],datasets:[{label:'Inscriptions',backgroundColor:'rgba(59,130,246,0.2)',borderColor:'rgba(59,130,246,1)',fill:true,data:[10,20,30,40,50,70]}]}}" class="img-fluid" alt="Statistiques" />
-              </div>
-            </div>
-            <div class="card shadow-sm">
-              <div class="card-header">
-                <i class="fas fa-comments mr-2"></i> Modération de contenu
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-link btn-small">Messages signalés</a><br />
-                <a href="#" class="btn btn-link btn-small">Commentaires</a>
-              </div>
-            </div>
-          </div>
+      </div>
 
-          <div class="col-md-4">
-            <div class="card mb-3 shadow-sm">
-              <div class="card-header">
-                <i class="fas fa-robot mr-2"></i> Recommandations intelligentes
-              </div>
-              <div class="card-body">
-                <button class="btn btn-sm btn-primary mb-2">Relancer</button><br />
-                <a href="#" class="btn btn-link btn-small">Voir suggestions</a>
-              </div>
-            </div>
-          </div>
+      <!-- Bas de page cards -->
+     <div class="row">
 
-          <div class="col-md-4">
-            <div class="card shadow-sm">
-              <div class="card-header">
-                <i class="fas fa-money-bill-wave mr-2"></i> Gestion des devises
-              </div>
-              <div class="card-body">
-                <p>TND → EUR <button class="btn btn-sm btn-outline-primary">Modifier</button></p>
-                <p>EUR → USD <button class="btn btn-sm btn-outline-primary">Modifier</button></p>
-                <p>USD → TND <button class="btn btn-sm btn-outline-primary">Modifier</button></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+  <!-- Évolution des inscriptions utilisateurs -->
+  <div class="col-md-4">
+    <div class="card mb-3 shadow-sm">
+      <div class="card-header">
+        <i class="fas fa-chart-line mr-2"></i> Évolution des inscriptions
+      </div>
+      <div class="card-body">
+        <p>Inscriptions par mois</p>
+        <canvas id="inscriptionsChart"></canvas>
+      </div>
     </div>
   </div>
 
-<!-- 🔐 Modal Connexion -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content p-3">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginModalLabel"><i class="fas fa-sign-in-alt"></i> Connexion</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <!-- Propriétés par type -->
+  <div class="col-md-4">
+    <div class="card mb-3 shadow-sm">
+      <div class="card-header">
+        <i class="fas fa-building mr-2"></i> Propriétés par type
       </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="emailModal">Email</label>
-            <input type="email" class="form-control" id="emailModal" required>
-          </div>
-          <div class="form-group">
-            <label for="passwordModal">Mot de passe</label>
-            <input type="password" class="form-control" id="passwordModal" required>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Connexion</button>
-        </form>
+      <div class="card-body">
+        <p>Maisons, Appartements, Villas</p>
+        <canvas id="propertiesChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Revenus / Visites par mois -->
+<div class="col-md-4">
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header">
+      <i class="fas fa-chart-area mr-2"></i> Revenus / Visites par mois
+    </div>
+    <div class="card-body">
+      <p>Suivi des performances mensuelles</p>
+      <canvas id="monthlyStatsChart"></canvas>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Statut des utilisateurs -->
+  <div class="col-md-4">
+    <div class="card mb-3 shadow-sm">
+      <div class="card-header">
+        <i class="fas fa-users mr-2"></i> Statut des utilisateurs
+      </div>
+      <div class="card-body text-center">
+        <canvas id="usersStatusChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-4">
+  <div class="card shadow-sm h-100 border-0 rounded-lg hover-scale" style="background: #fff;">
+    
+    <!-- En-tête -->
+    <div class="card-header d-flex justify-content-between align-items-center bg-transparent border-bottom-0 pb-2">
+      <div class="d-flex align-items-center">
+        <i class="fas fa-robot fa-lg text-primary mr-2"></i>
+        <span class="font-weight-bold">Suggestions IA</span>
+      </div>
+      <span class="badge bg-success rounded-pill px-3 py-1">IA</span>
+    </div>
+
+    <!-- Corps -->
+    <div class="card-body d-flex flex-column justify-content-between p-2">
+      
+      <!-- Texte descriptif -->
+      <p class="text-muted mb-0" style="font-size: 0.9rem; line-height: 1.3;">
+        Recevez des recommandations intelligentes pour améliorer l'engagement des utilisateurs et optimiser vos publications.
+      </p>
+
+      <!-- Mini-graphique -->
+      <div class="bg-light rounded p-1 mt-1 text-center shadow-sm">
+        <canvas id="miniIAChart" height="10"></canvas>
+      </div>
+
+      <!-- Indicateur -->
+      <div class="mt-1 mb-2">
+        <small class="text-secondary d-block mb-0">Performance IA</small>
+        <div class="progress" style="height: 5px; border-radius: 10px;">
+          <div class="progress-bar bg-primary" role="progressbar" style="width: 78%; border-radius: 10px;"></div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="d-flex flex-column">
+        <button class="btn btn-primary btn-sm mb-1 d-flex align-items-center justify-content-center">
+          <i class="fas fa-sync-alt mr-2"></i> Relancer
+        </button>
+        <a href="#" class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center">
+          <i class="fas fa-arrow-right mr-2"></i> Voir suggestions
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+        <!-- Colonne vide ou future -->
+       <div class="col-md-4">
+  <div class="card shadow-sm h-100">
+    <div class="card-header d-flex align-items-center justify-content-between">
+      <div>
+        <i class="fas fa-info-circle mr-2"></i> Infos supplémentaires
+      </div>
+      <span class="badge bg-primary"></span>
+    </div>
+    <div class="card-body">
+      <!-- Statistiques rapides -->
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Propriétés en attente
+          <span class="badge bg-warning text-dark">5</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Messages non lus
+          <span class="badge bg-info text-dark">12</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Signalements récents
+          <span class="badge bg-danger">3</span>
+        </li>
+      </ul>
+
+      <!-- Actions rapides -->
+      <div class="d-flex flex-column">
+        <button class="btn btn-sm btn-primary mb-2">
+          <i class="fas fa-plus mr-1"></i> Ajouter un utilisateur
+        </button>
+        <button class="btn btn-sm btn-secondary mb-2">
+          <i class="fas fa-envelope mr-1"></i> Envoyer un message global
+        </button>
+        <button class="btn btn-sm btn-warning">
+          <i class="fas fa-cog mr-1"></i> Paramètres rapides
+        </button>
       </div>
     </div>
   </div>
 </div>
+
+
+      </div> <!-- fin row bas de page -->
+
+    </main> <!-- fin main -->
+
+  </div> <!-- fin row principal -->
+</div> <!-- fin container-fluid -->
