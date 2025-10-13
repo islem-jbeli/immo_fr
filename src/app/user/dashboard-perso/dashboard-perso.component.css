@@ -1,9 +1,126 @@
-.clickable-card {
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+.dashboard-wrapper {
+  min-height: 100vh;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: #f8f9fa;
+  display: flex;
 }
 
-.clickable-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background-color: #fff;
+  border-right: 1px solid #e0e0e0;
+  border-radius: 0 20px 20px 0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+}
+
+.sidebar-header h4 {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+.nav-link {
+  color: #333;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.nav-link i {
+  color: #0d6efd;
+  font-size: 1.2rem;
+}
+
+.nav-link:hover {
+  background-color: #f0f0f0;
+  color: #0d6efd;
+}
+
+/* Main content */
+.dashboard-main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* Cards */
+.dashboard-card {
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  background-color: #fff;
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+.dashboard-card .card-body {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  flex: 1;
+}
+
+.dashboard-card .card-body i {
+  font-size: 3rem;
+  margin-right: 15px;
+  transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.dashboard-card:hover .card-body i {
+  transform: scale(1.2);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .dashboard-wrapper {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    border-radius: 0;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .sidebar-header {
+    display: none;
+  }
+  .nav-link {
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-card .card-body {
+    flex-direction: column;
+    text-align: center;
+  }
+  .dashboard-card .card-body i {
+    margin-bottom: 10px;
+  }
 }

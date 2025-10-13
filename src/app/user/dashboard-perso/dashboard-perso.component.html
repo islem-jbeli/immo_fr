@@ -1,65 +1,63 @@
-<div class="container mt-4">
-  <h2 class="mb-4"><i class="fas fa-home"></i> Mon Dashboard</h2>
+<div class="dashboard-wrapper d-flex">
 
-  <div class="row">
-    <!-- Mes recherches enregistrées -->
-    <div class="col-md-4 mb-3">
-      <div class="card shadow-sm h-100 clickable-card" routerLink="/dashboard-perso/recherches">
-        <div class="card-body text-center">
-          <i class="fas fa-search fa-2x mb-2 text-primary"></i>
-          <h5 class="card-title">Mes recherches enregistrées</h5>
-        </div>
-      </div>
+  <!-- Sidebar -->
+  <nav class="sidebar p-3 d-flex flex-column">
+    <div class="sidebar-header mb-4 text-center">
+      <h4 class="mb-0"><i class="fas fa-home me-2"></i> Mon Dashboard</h4>
     </div>
+    <ul class="nav flex-column flex-fill">
+      <li class="nav-item mb-2">
+        <a class="nav-link" routerLink="/dashboard-perso/recherches">
+          <i class="fas fa-search me-2"></i> Recherches
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link" routerLink="/dashboard-perso/favoris">
+          <i class="fas fa-heart me-2"></i> Favoris
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link" routerLink="/dashboard-perso/recommandations">
+          <i class="fas fa-lightbulb me-2"></i> Recommandations
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link" routerLink="/dashboard-perso/messages">
+          <i class="fas fa-envelope me-2"></i> Messages
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link" routerLink="/dashboard-perso/parametres">
+          <i class="fas fa-cog me-2"></i> Paramètres
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard-perso/historique">
+          <i class="fas fa-clock me-2"></i> Historique
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-    <!-- Mes favoris -->
-    <div class="col-md-4 mb-3">
-      <div class="card shadow-sm h-100 clickable-card" routerLink="/dashboard-perso/favoris">
-        <div class="card-body text-center">
-          <i class="fas fa-heart fa-2x mb-2 text-danger"></i>
-          <h5 class="card-title">Mes favoris</h5>
-        </div>
-      </div>
-    </div>
+  <!-- Main content -->
+  <div class="dashboard-main flex-fill p-4">
+    <div class="row g-4">
 
-    <!-- Recommandations -->
-    <div class="col-md-4 mb-3">
-      <div class="card shadow-sm h-100 clickable-card" routerLink="/dashboard-perso/recommandations">
-        <div class="card-body text-center">
-          <i class="fas fa-lightbulb fa-2x mb-2 text-warning"></i>
-          <h5 class="card-title">Recommandations pour moi</h5>
+      <ng-container *ngFor="let card of cards">
+        <div class="col-sm-6 col-md-4 d-flex">
+          <div class="dashboard-card shadow-sm w-100" [routerLink]="card.link">
+            <div class="card-body d-flex align-items-center">
+              <i class="{{card.icon}} fa-3x me-3" [ngClass]="card.color"></i>
+              <div>
+                <h5 class="card-title mb-1">{{card.title}}</h5>
+                <p class="card-text">{{card.subtitle}}</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </ng-container>
 
-    <!-- Mes messages -->
-    <div class="col-md-4 mb-3">
-      <div class="card shadow-sm h-100 clickable-card" routerLink="/dashboard-perso/messages">
-        <div class="card-body text-center">
-          <i class="fas fa-envelope fa-2x mb-2 text-success"></i>
-          <h5 class="card-title">Mes messages</h5>
-        </div>
-      </div>
-    </div>
-
-    <!-- Paramètres du compte -->
-    <div class="col-md-4 mb-3">
-      <div class="card shadow-sm h-100 clickable-card" routerLink="/dashboard-perso/parametres">
-        <div class="card-body text-center">
-          <i class="fas fa-cog fa-2x mb-2 text-secondary"></i>
-          <h5 class="card-title">Paramètres du compte</h5>
-        </div>
-      </div>
-    </div>
-
-    <!-- Historique des visites -->
-    <div class="col-md-4 mb-3">
-      <div class="card shadow-sm h-100 clickable-card" routerLink="/dashboard-perso/historique">
-        <div class="card-body text-center">
-          <i class="fas fa-clock fa-2x mb-2 text-info"></i>
-          <h5 class="card-title">Historique des visites</h5>
-        </div>
-      </div>
     </div>
   </div>
+
 </div>
