@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h3 class="mb-4 fw-bold text-primary">
+    <i class="fas fa-plus-circle me-2"></i>➕ Publier un nouveau bien immobilier
+  </h3>
+
+  <div class="card shadow-sm p-4 rounded-3">
+    <form (ngSubmit)="onSubmit()" #annonceForm="ngForm">
+
+      <!-- Titre du bien -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Titre</label>
+        <input type="text" id="title" name="title" class="form-control" required [(ngModel)]="annonce.title">
+      </div>
+
+      <!-- Type de bien -->
+      <div class="mb-3">
+        <label for="type" class="form-label">Type de bien</label>
+        <select id="type" name="type" class="form-select" required [(ngModel)]="annonce.type">
+          <option value="">Sélectionnez un type</option>
+          <option value="Appartement">Appartement</option>
+          <option value="Maison">Maison</option>
+          <option value="Villa">Villa</option>
+          <option value="Studio">Studio</option>
+        </select>
+      </div>
+
+      <!-- Ville -->
+      <div class="mb-3">
+        <label for="city" class="form-label">Ville</label>
+        <input type="text" id="city" name="city" class="form-control" required [(ngModel)]="annonce.city">
+      </div>
+
+      <!-- Prix -->
+      <div class="mb-3">
+        <label for="price" class="form-label">Prix</label>
+        <input type="number" id="price" name="price" class="form-control" required [(ngModel)]="annonce.price">
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea id="description" name="description" rows="4" class="form-control" [(ngModel)]="annonce.description"></textarea>
+      </div>
+
+      <!-- Bouton submit -->
+      <button type="submit" class="btn btn-success">
+        <i class="fas fa-paper-plane me-2"></i> Publier
+      </button>
+    </form>
+  </div>
+</div>

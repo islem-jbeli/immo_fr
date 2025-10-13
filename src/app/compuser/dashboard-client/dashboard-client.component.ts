@@ -13,6 +13,16 @@ import { RouterModule } from '@angular/router';
 })
 export class DashboardClientComponent implements AfterViewInit {
 
+
+ // ✅ Variable pour contrôler le dropdown
+  isDropdownOpen: boolean = false;
+
+  // Optionnel : fonction pour basculer l'état
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+
   userName = 'Islem';
   totalProperties = 8;
   totalFavorites = 5;
@@ -92,5 +102,19 @@ isProfilPage(): boolean {
   isMesMessagesPage(): boolean {
     return this.router.url === '/dashboard-client/mes-messages';
   }
+
+  isAjouterAnnoncePage(): boolean {
+    return this.router.url === '/dashboard-client/ajouter-annonce';
+  }
+
+  isStatistiqueuserPage(): boolean {
+    return this.router.url === '/dashboard-client/statistiqueuser';
+  }
+
+
+isContactsPage(): boolean {
+    return this.router.url === '/dashboard-client/contacts'; 
+  }
+
 
 }
