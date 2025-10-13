@@ -17,7 +17,6 @@ export class ProfilComponent {
     nom: 'Jbeli',
     prenom: 'Islem',
     email: 'islem@example.com',
-    groupe: 'Acheteur'
   };
 
   userPhoto: string | null = 'assets/user-photo.jpg';
