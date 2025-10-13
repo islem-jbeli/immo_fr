@@ -1,0 +1,176 @@
+/* Style global du container */
+.container {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Titre */
+h2 {
+  font-weight: 600;
+  color: #0d6efd;
+  display: flex;
+  align-items: center;
+}
+
+/* Tabs */
+.nav-tabs .nav-link {
+  border: none;
+  color: #6c757d;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link.active {
+  color: #0d6efd;
+  border-bottom: 3px solid #0d6efd;
+  background-color: transparent;
+}
+
+.nav-tabs .nav-link:hover {
+  color: #0d6efd;
+}
+
+/* Listes */
+.list-group {
+  border: none;
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #eaeaea;
+  padding: 1rem;
+  transition: background 0.2s ease;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.list-group-item:hover {
+  background-color: #f9f9f9;
+}
+
+/* Boutons */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0.35rem 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #bb2d3b;
+}
+
+.btn-success {
+  background-color: #198754;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #157347;
+}
+
+/* Modals */
+.modal-content {
+  border-radius: 12px;
+  border: none;
+  overflow: hidden;
+}
+
+.modal-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.modal-title {
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+.modal-footer {
+  border-top: 1px solid #eaeaea;
+}
+
+/* Textarea dans la réponse */
+textarea.form-control {
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  resize: none;
+  transition: border 0.2s ease;
+}
+
+textarea.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+/* Animation des onglets (tabs) */
+.nav-tabs .nav-link {
+  position: relative;
+}
+.nav-tabs .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: #0d6efd;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+.nav-tabs .nav-link.active::after {
+  width: 100%;
+}
+
+/* Animation au hover des boutons */
+.btn {
+  transform: translateY(0);
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Animation des éléments de la liste (messages, notifications, annonces) */
+.list-group-item {
+  animation: fadeSlide 0.4s ease;
+}
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation modale (apparition en zoom + fade) */
+.modal-content {
+  animation: zoomIn 0.3s ease;
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

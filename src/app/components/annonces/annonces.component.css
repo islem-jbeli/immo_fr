@@ -1,0 +1,88 @@
+/* Container général */
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Titre de la page */
+h2.fw-bold {
+  font-size: 1.8rem;
+}
+
+/* Tableau */
+.table {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 0.15rem 1.75rem rgba(58,59,69,.15);
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Badges */
+.badge {
+  font-size: 0.85rem;
+  padding: 0.4em 0.6em;
+}
+
+/* Formulaire de modification */
+.edit-form {
+  background-color: #fdfdfd;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+  transition: all 0.3s ease-in-out;
+}
+
+.edit-form h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.edit-form input,
+.edit-form select {
+  border-radius: 0.35rem;
+}
+
+.edit-form input:focus,
+.edit-form select:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
+}
+
+/* Boutons */
+.edit-form .btn {
+  min-width: 100px;
+}
+
+/* Pagination */
+.pagination .page-item .page-link {
+  color: #0d6efd;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .edit-form {
+    padding: 1rem;
+  }
+}

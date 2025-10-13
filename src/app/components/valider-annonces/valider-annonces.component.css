@@ -1,0 +1,40 @@
+/* Container */
+.container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+/* Table styling */
+.table thead th {
+  text-align: center;
+  font-weight: 600;
+}
+
+.table tbody td {
+  vertical-align: middle;
+}
+
+/* Badges */
+.badge {
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Buttons */
+.btn-sm {
+  font-size: 0.8rem;
+  padding: 4px 8px;
+}
+
+/* Input shadow */
+.form-control {
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+/* Pagination */
+.pagination .page-link {
+  cursor: pointer;
+}

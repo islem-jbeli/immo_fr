@@ -1,0 +1,136 @@
+/* Carte annonce */
+.annonce-card {
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  animation: fadeInUp 0.5s ease forwards;
+}
+.annonce-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 30px rgba(0,0,0,0.25);
+}
+
+/* Image principale */
+.annonce-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  transition: transform 0.3s ease;
+}
+.annonce-card:hover .annonce-img {
+  transform: scale(1.05);
+}
+
+/* Badge status */
+.badge {
+  font-size: 0.85rem;
+  padding: 0.45em 0.7em;
+  font-weight: 500;
+  border-radius: 12px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Card text */
+.card-body h5 {
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #333;
+  transition: color 0.3s ease;
+}
+.card-body h5:hover {
+  color: #0d6efd;
+}
+.card-body p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Mini galerie */
+.gallery-thumb {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  cursor: pointer;
+}
+.gallery-thumb:hover {
+  transform: scale(1.15) rotate(2deg);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Galerie modal grande */
+.gallery-thumb-lg {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  cursor: pointer;
+}
+.gallery-thumb-lg:hover {
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* Boutons */
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(13,110,253,0.3);
+  transform: translateY(-2px);
+}
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(220,53,69,0.3);
+  transform: translateY(-2px);
+}
+.btn-outline-info:hover {
+  background-color: #0dcaf0;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(13,202,240,0.3);
+  transform: translateY(-2px);
+}
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(108,117,125,0.3);
+  transform: translateY(-2px);
+}
+
+/* Formulaire de modification inline */
+.edit-form {
+  background-color: #f8f9fa;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeInUp 0.4s ease forwards;
+}
+.edit-form:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

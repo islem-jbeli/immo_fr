@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h2 class="text-center fw-bold mb-4 text-primary">📊 Tableau de bord des statistiques</h2>
+
+  <!-- Menu rapide -->
+  <ul class="stats-menu mb-4">
+    <li><button class="btn btn-outline-primary" (click)="showChart('inscriptions')">Inscriptions par mois</button></li>
+    <li><button class="btn btn-outline-primary" (click)="showChart('connexions')">Connexions quotidiennes</button></li>
+    <li><button class="btn btn-outline-primary" (click)="showChart('villes')">Villes les plus recherchées</button></li>
+    <li><button class="btn btn-outline-primary" (click)="showChart('biens')">Biens les plus populaires</button></li>
+    <li><button class="btn btn-outline-primary" (click)="showChart('conversion')">Taux de conversion</button></li>
+    <li>  <button class="btn btn-outline-secondary mt-2" (click)="exportData()">
+        📥 Export CSV
+      </button></li>
+  </ul>
+
+  <!-- Contenu graphique -->
+  <div class="charts-container">
+    <div class="chart-card" *ngIf="activeChart === 'inscriptions'">
+      <h5 class="chart-title">Inscriptions par mois</h5>
+      <canvas id="inscriptionsChart"></canvas>
+    </div>
+
+    <div class="chart-card" *ngIf="activeChart === 'connexions'">
+      <h5 class="chart-title">Connexions quotidiennes</h5>
+      <canvas id="connexionsChart"></canvas>
+    </div>
+
+    <div class="chart-card" *ngIf="activeChart === 'villes'">
+      <h5 class="chart-title">Villes les plus recherchées</h5>
+      <canvas id="villesChart"></canvas>
+    </div>
+
+    <div class="chart-card" *ngIf="activeChart === 'biens'">
+      <h5 class="chart-title">Biens les plus populaires</h5>
+      <canvas id="biensChart"></canvas>
+    </div>
+
+    <div class="chart-card" *ngIf="activeChart === 'conversion'">
+      <h5 class="chart-title">Taux de conversion</h5>
+      <canvas id="conversionChart"></canvas>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card profile-card shadow-lg p-4">
+
+    <!-- Photo -->
+    <div class="text-center mb-4">
+      <img 
+        [src]="userPhoto || 'assets/default-profile.png'" 
+        alt="Photo de profil" 
+        class="rounded-circle profile-img"
+      />
+    </div>
+
+    <!-- Nom -->
+    <h4 class="text-center text-primary mb-4">{{ user.nom }} {{ user.prenom }}</h4>
+
+    <!-- Infos utilisateur -->
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item"><i class="fas fa-user me-2 text-primary"></i> <b>Nom :</b> {{ user.nom }}</li>
+      <li class="list-group-item"><i class="fas fa-id-card me-2 text-success"></i> <b>Prénom :</b> {{ user.prenom }}</li>
+      <li class="list-group-item"><i class="fas fa-envelope me-2 text-warning"></i> <b>Email :</b> {{ user.email }}</li>
+      <li class="list-group-item"><i class="fas fa-users me-2 text-danger"></i> <b>Groupe :</b> {{ user.groupe }}</li>
+    </ul>
+
+    <!-- Boutons -->
+    <div class="d-flex justify-content-center gap-2 mb-3">
+      <button class="btn btn-primary btn-sm" (click)="toggleEditForm()">Modifier Profil</button>
+      <button class="btn btn-outline-secondary btn-sm" (click)="togglePhotoForm()">Changer Photo</button>
+    </div>
+
+    <!-- Formulaire modification profil -->
+    <div *ngIf="showEditForm">
+      <h5 class="text-center mb-3">Modifier Profil</h5>
+      <form (ngSubmit)="saveProfile()">
+        <div class="mb-2">
+          <input type="text" class="form-control" [(ngModel)]="user.nom" name="nom" placeholder="Nom">
+        </div>
+        <div class="mb-2">
+          <input type="text" class="form-control" [(ngModel)]="user.prenom" name="prenom" placeholder="Prénom">
+        </div>
+        <div class="mb-2">
+          <input type="email" class="form-control" [(ngModel)]="user.email" name="email" placeholder="Email">
+        </div>
+        <button type="submit" class="btn btn-success w-100">Enregistrer</button>
+      </form>
+    </div>
+
+    <!-- Formulaire changement photo -->
+    <div *ngIf="showPhotoForm">
+      <h5 class="text-center mb-3">Changer Photo</h5>
+      <input type="file" (change)="onFileSelected($event)" class="form-control mb-2">
+      <button class="btn btn-primary w-100" (click)="uploadPhoto()" [disabled]="!selectedFile">Téléverser</button>
+    </div>
+
+  </div>
+</div>

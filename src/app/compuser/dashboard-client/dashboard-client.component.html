@@ -1,5 +1,5 @@
 <div class="container-fluid mt-4">
-  <div class="row">
+  <div class="row"   *ngIf="!isProfilPage() && !isAnnonceuserPage()  && !isFavorisPage() && !isMesMessagesPage() ">
 
     <!-- Sidebar -->
     <div class="col-md-3">
@@ -7,10 +7,11 @@
         <a class="list-group-item list-group-item-action active">
           <i class="fas fa-tachometer-alt me-2"></i> Mon Dashboard
         </a>
-        <a class="list-group-item list-group-item-action"><i class="fas fa-user me-2"></i> Mon Profil</a>
-        <a class="list-group-item list-group-item-action"><i class="fas fa-building me-2"></i> Mes Annonces</a>
-        <a class="list-group-item list-group-item-action"><i class="fas fa-heart me-2"></i> Mes Favoris</a>
-        <a class="list-group-item list-group-item-action"><i class="fas fa-envelope me-2"></i> Mes Messages</a>
+        
+        <a class="list-group-item list-group-item-action"  routerLink="/dashboard-client/profil"><i class="fas fa-user me-2"></i> Mon Profil</a>
+        <a class="list-group-item list-group-item-action"  routerLink="/dashboard-client/annonceuser" ><i class="fas fa-building me-2"></i> Mes Annonces</a>
+        <a class="list-group-item list-group-item-action"  routerLink="/dashboard-client//favoris"><i class="fas fa-heart me-2"></i> Mes Favoris</a>
+        <a class="list-group-item list-group-item-action" routerLink="/dashboard-client/mes-messages"><i class="fas fa-envelope me-2"></i> Mes Messages</a>
       </div>
     </div>
 
@@ -136,3 +137,4 @@
     </div>
   </div>
 </div>
+ <router-outlet></router-outlet>

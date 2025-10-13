@@ -1,0 +1,145 @@
+<div class="container mt-4">
+
+  <!-- Titre de la page -->
+  <div class="d-flex align-items-center mb-4">
+    <i class="fas fa-bullhorn fa-2x text-primary me-2"></i>
+    <h2 class="fw-bold mb-0">Liste des annonces</h2>
+  </div>
+
+  <!-- Filtres -->
+  <div class="row g-3 mb-3">
+    <div class="col-md-3">
+      <input type="text" class="form-control" placeholder="Rechercher par titre" [(ngModel)]="searchTitle">
+    </div>
+    <div class="col-md-3">
+      <select class="form-select" [(ngModel)]="filterCity">
+        <option value="">Toutes les villes</option>
+        <option *ngFor="let city of cities">{{ city }}</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select class="form-select" [(ngModel)]="filterType">
+        <option value="">Tous les types</option>
+        <option *ngFor="let type of types">{{ type }}</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select class="form-select" [(ngModel)]="filterStatus">
+        <option value="">Tous les statuts</option>
+        <option *ngFor="let status of statuses">{{ status }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Tableau des annonces -->
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>id</th>
+          <th>Titre</th>
+          <th>Propriétaire</th>
+          <th>Ville</th>
+          <th>Type</th>
+          <th>Prix</th>
+          <th>Statut</th>
+          <th>Date de publication</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ad of filteredAds">
+          <td>{{ ad.id }}</td>
+          <td>{{ ad.title }}</td>
+          <td>{{ ad.owner }}</td>
+          <td>{{ ad.city }}</td>
+          <td>{{ ad.type }}</td>
+          <td>{{ ad.price | currency:'TND' }}</td>
+          <td>
+            <span [ngClass]="{
+              'badge bg-success': ad.status === 'Active',
+              'badge bg-warning': ad.status === 'En attente',
+              'badge bg-danger': ad.status === 'Refusée'
+            }">{{ ad.status }}</span>
+          </td>
+          <td>{{ ad.date | date:'shortDate' }}</td>
+          <td>
+            <button class="btn btn-sm btn-info me-1" (click)="viewAd(ad)">Voir</button>
+            <button class="btn btn-sm btn-warning me-1" (click)="editAd(ad)">Modifier</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteAd(ad)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Formulaire d’affichage / modification -->
+  <div *ngIf="selectedAd" class="card p-3 mt-3 border shadow-sm">
+    <h5>{{ selectedAd.title }} - Détails</h5>
+
+    <div class="mb-2">
+      <strong>Propriétaire :</strong> {{ selectedAd.owner }}
+    </div>
+
+    <div class="mb-2">
+      <strong>Ville :</strong>
+      <input *ngIf="editMode" [(ngModel)]="selectedAd.city" class="form-control form-control-sm" />
+      <span *ngIf="!editMode">{{ selectedAd.city }}</span>
+    </div>
+
+    <div class="mb-2">
+      <strong>Type :</strong>
+      <input *ngIf="editMode" [(ngModel)]="selectedAd.type" class="form-control form-control-sm" />
+      <span *ngIf="!editMode">{{ selectedAd.type }}</span>
+    </div>
+
+    <div class="mb-2">
+      <strong>Prix :</strong>
+      <input *ngIf="editMode" type="number" [(ngModel)]="selectedAd.price" class="form-control form-control-sm" />
+      <span *ngIf="!editMode">{{ selectedAd.price | currency:'TND' }}</span>
+    </div>
+
+    <div class="mb-2">
+      <strong>Statut :</strong>
+      <select *ngIf="editMode" [(ngModel)]="selectedAd.status" class="form-select form-select-sm">
+        <option *ngFor="let s of statuses">{{ s }}</option>
+      </select>
+      <span *ngIf="!editMode">{{ selectedAd.status }}</span>
+    </div>
+
+    <div class="mb-2">
+      <strong>Description :</strong>
+      <textarea *ngIf="editMode" [(ngModel)]="selectedAd.description" class="form-control form-control-sm"></textarea>
+      <span *ngIf="!editMode">{{ selectedAd.description }}</span>
+    </div>
+
+    <!-- Photos -->
+    <div class="d-flex flex-wrap gap-2 mb-2">
+      <img *ngFor="let photo of selectedAd.photos" [src]="photo" alt="photo"
+           class="img-thumbnail" style="width:100px; height:70px; object-fit:cover;">
+    </div>
+
+    <!-- Boutons -->
+    <div class="mt-2 d-flex gap-2">
+      <button *ngIf="editMode" class="btn btn-success btn-sm" (click)="saveEdit()">Enregistrer</button>
+      <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Fermer</button>
+      <!-- ⚠️ Plus besoin de mettre editMode ici, c’est géré dans editAd() -->
+      <button *ngIf="!editMode" class="btn btn-warning btn-sm" (click)="editAd(selectedAd)">Modifier</button>
+    </div>
+  </div>
+
+</div>
+  <!-- Pagination -->
+  <nav *ngIf="totalPages > 1" aria-label="Pagination">
+    <ul class="pagination justify-content-center mt-3">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="goToPage(currentPage - 1)">Précédent</a>
+      </li>
+      <li class="page-item" *ngFor="let page of pagesArray" [class.active]="page === currentPage">
+        <a class="page-link" (click)="goToPage(page)">{{ page }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="goToPage(currentPage + 1)">Suivant</a>
+      </li>
+    </ul>
+  </nav>

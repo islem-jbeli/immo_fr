@@ -1,0 +1,74 @@
+<div class="container mt-4">
+  <h2 class="text-primary mb-4 text-center">Paramètres du compte</h2>
+
+  <div class="row"  >
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <div class="list-group shadow-sm">
+        <a class="list-group-item list-group-item-action active">
+          <i class="fas fa-user me-2"></i> Mon profil
+        </a>
+        <a class="list-group-item list-group-item-action"   routerLink="/dashboard/changer-photo" >
+          <i class="fas fa-image me-2"></i> Changer la photo du profil
+        </a>
+        <a class="list-group-item list-group-item-action" routerLink="/dashboard/change-password">
+          <i class="fas fa-lock me-2"></i> Changer le mot de passe
+        </a>
+        
+      </div>
+    </div>
+
+    <!-- Formulaire principal -->
+    <div class="col-md-9">
+      <div class="card shadow-sm p-4">
+        <h5 class="mb-3"><i class="fas fa-edit me-2 text-secondary"></i>Modifier les informations</h5>
+
+        <form (ngSubmit)="saveProfile()">
+          <!-- Informations générales -->
+          <h6 class="text-muted mb-3">Informations générales</h6>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label class="form-label">Login (CIN) *</label>
+              <input type="text" class="form-control" [(ngModel)]="user.cin" name="cin" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Prénom *</label>
+              <input type="text" class="form-control" [(ngModel)]="user.prenom" name="prenom" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Nom *</label>
+              <input type="text" class="form-control" [(ngModel)]="user.nom" name="nom" required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Téléphone *</label>
+              <input type="text" class="form-control" [(ngModel)]="user.telephone" name="telephone" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Adresse Postale *</label>
+              <input type="text" class="form-control" [(ngModel)]="user.adresse" name="adresse" required>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Code postal *</label>
+              <input type="text" class="form-control" [(ngModel)]="user.codePostal" name="codePostal" required>
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- Boutons -->
+          <div class="d-flex justify-content-end">
+            <button type="reset" class="btn btn-outline-secondary me-2">Réinitialiser</button>
+            <button type="submit" class="btn btn-success">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-9">
+  <router-outlet></router-outlet>
+</div>
+

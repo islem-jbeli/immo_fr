@@ -2,6 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
+import { Router } from '@angular/router';
 
 Chart.register(...registerables);
 
@@ -148,4 +149,60 @@ export class DashboardComponent implements AfterViewInit {
       });
     }
   }
+  constructor(private router: Router) {}
+
+  isUsersPage(): boolean {
+    return this.router.url === '/dashboard/users';
+  }
+  isStatistiquesPage(): boolean {
+    return this.router.url === '/dashboard/statistiques';
+  }
+   isAnnoncesPage(): boolean {
+    return this.router.url === '/dashboard/annonces';
+  }
+
+  isValiderAnnoncesPage(): boolean {
+    return this.router.url === '/dashboard/valider-annonces';
+  }
+
+ isStatistiquesAnnoncesPage(): boolean { 
+    return this.router.url === '/dashboard/statistiques-annonces'; 
+  }
+
+    isStatistiquesDashboardPage(): boolean {
+    return this.router.url === '/dashboard/statistiques-dashboard';
+  }
+
+  isRolesAccessPage(): boolean { 
+    return this.router.url === '/dashboard/roles-access';
+  }
+
+ isMessagesPage(): boolean { 
+    return this.router.url === '/dashboard/messages';
+  }
+
+  isJournalMenuPage(): boolean {  
+  return this.router.url === '/dashboard/journal-menu';
+}
+
+  isProfilePage(): boolean {  
+  return this.router.url === '/dashboard/profile';
+}
+
+  isSettingsPage(): boolean {  
+  return this.router.url === '/dashboard/settings';
+}
+
+  isLogoutPage(): boolean {  
+  return this.router.url === '/dashboard/logout';
+}
+
+   isChangerPhotoPage(): boolean {  
+    return this.router.url === '/dashboard/changer-photo';
+  }
+
+   isChangePasswordPage(): boolean {
+    return this.router.url === '/dashboard/change-password';
+  }
+
 }

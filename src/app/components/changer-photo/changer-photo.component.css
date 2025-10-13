@@ -1,0 +1,120 @@
+/* Background animé bleu */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start; /* ou center, space-between, etc. */
+  align-items: flex-start;     /* ou center */
+  background: linear-gradient(90deg, #ff7e5f, #feb47b, #ff7e5f); /* nouvelle gradient */
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+/* Animation du gradient */
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* Conteneur principal style “carte” */
+.container {
+  max-width: 400px;
+  padding: 30px 25px;
+  backdrop-filter: blur(10px); /* effet glassmorphism */
+  background: rgba(255, 255, 255, 0.95); /* fond clair semi-transparent */
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* Titre */
+h3 {
+  text-align: center;
+  color: #0056b3; /* bleu foncé */
+  margin-bottom: 25px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+h3::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: #0072ff; /* bleu vif */
+  margin: 10px auto 0;
+  border-radius: 3px;
+}
+
+/* Zone d’aperçu de l’image */
+.img-thumbnail {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #0072ff; /* bleu vif */
+  box-shadow: 0 6px 18px rgba(0,114,255,0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.img-thumbnail:hover {
+  transform: scale(1.15) rotate(2deg);
+  box-shadow: 0 10px 25px rgba(0,114,255,0.4);
+}
+
+/* Input fichier */
+input[type="file"] {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #0072ff;
+  transition: all 0.3s ease;
+}
+
+input[type="file"]:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 10px rgba(0,114,255,0.3);
+}
+
+/* Bouton */
+.btn-lg {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+  border-radius: 14px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(90deg, #0072ff, #0056b3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-lg:hover {
+  background: linear-gradient(90deg, #0056b3, #0072ff);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,86,179,0.4);
+}
+
+.btn-lg:disabled {
+  background-color: #adb5bd;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Centrage du contenu */
+.text-center {
+  text-align: center;
+}

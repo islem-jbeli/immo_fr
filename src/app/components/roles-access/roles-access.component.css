@@ -1,0 +1,12 @@
+h2 {
+  color: #0d6efd;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f8f9fa;
+}
+
+.form-check {
+  margin-left: 15px;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,31 @@
+<div class="container mt-4" style="max-width: 400px;">
+  <h3 class="mb-3 text-primary">Changer la photo du profil</h3>
+
+  <!-- Aperçu de l'image -->
+  <div class="mb-3 text-center">
+    <img 
+      [src]="previewUrl || 'assets/default-profile.png'" 
+      alt="Aperçu photo" 
+      class="img-thumbnail rounded-circle" 
+      style="width: 150px; height: 150px; object-fit: cover;"
+    />
+  </div>
+
+  <!-- Input fichier -->
+  <div class="mb-3">
+    <label class="form-label">Choisir une nouvelle photo</label>
+    <input 
+      type="file" 
+      (change)="onFileSelected($event)" 
+      accept="image/*"
+      class="form-control"
+    />
+  </div>
+
+  <!-- Bouton -->
+  <div class="d-grid">
+    <button class="btn btn-primary btn-lg" (click)="uploadPhoto()" [disabled]="!selectedFile">
+      Téléverser
+    </button>
+  </div>
+</div>

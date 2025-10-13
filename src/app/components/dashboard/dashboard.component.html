@@ -23,11 +23,11 @@
       <i class="fas fa-chevron-down ml-1" [ngClass]="{'fa-rotate-180': isDropdownOpen}"></i>
     </a>
     <div class="dropdown-menu dropdown-menu-right shadow-sm" [class.show]="isDropdownOpen">
-      <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i> Profil</a>
-      <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i> Paramètres</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt mr-2"></i> Déconnexion</a>
-    </div>
+       <a class="dropdown-item" routerLink="/dashboard/profile"><i class="fas fa-user mr-2"></i> Profil</a>
+        <a class="dropdown-item" routerLink="/dashboard/settings"><i class="fas fa-cog mr-2"></i> Paramètres</a>  
+            <div class="dropdown-divider"></div>
+        <a class="dropdown-item text-danger" routerLink="/dashboard/logout"><i class="fas fa-sign-out-alt mr-2"></i> Déconnexion</a>   
+ </div>
   </li>
 </ul>
 
@@ -35,7 +35,12 @@
 
 
 <div class="container-fluid">
-  <div class="row">
+  <div class="row"
+   *ngIf="!isUsersPage() && !isStatistiquesPage()
+     && !isAnnoncesPage()  && !isValiderAnnoncesPage() && !isStatistiquesAnnoncesPage()  
+      && !isStatistiquesDashboardPage() && !isRolesAccessPage()  && !isMessagesPage()
+      && !isJournalMenuPage()  && !isProfilePage()  && !isSettingsPage()  && !isLogoutPage() 
+      && !isChangerPhotoPage() && !isChangePasswordPage() ">
 
     <!-- Sidebar -->
     <nav class="col-lg-2 col-md-3 sidebar bg-light vh-100 p-3">
@@ -54,14 +59,19 @@
             <i class="fas" [ngClass]="{'fa-chevron-down': !menus.users, 'fa-chevron-up': menus.users}"></i>
           </a>
           <ul class="list-unstyled pl-3" *ngIf="menus.users">
-            <li><a routerLink="/admin/users" class="nav-link">👥 Liste des utilisateurs</a></li>
-            <li><a href="#" class="nav-link">🔍 Rechercher / filtrer / trier</a></li>
-            <li><a href="#" class="nav-link">✅ Activer / désactiver un compte</a></li>
-            <li><a href="#" class="nav-link">🛠 Modifier un utilisateur</a></li>
-            <li><a href="#" class="nav-link">❌ Supprimer un utilisateur</a></li>
-            <li><a href="#" class="nav-link">📊 Statistiques des utilisateurs</a></li>
-          </ul>
+            <li>
+              <a routerLink="/dashboard/users" class="nav-link">👥 Liste des utilisateurs</a>
+            </li>
+            
+            <li>      
+              <a routerLink="/dashboard/statistiques" class="nav-link">📊 Statistiques des utilisateurs</a>
+             </li>         
+           </ul>
         </li>
+   
+
+        
+
 
         <!-- Annonces -->
         <li class="nav-item">
@@ -69,40 +79,16 @@
             <span><i class="fas fa-bullhorn"></i> Annonces</span>
             <i class="fas" [ngClass]="{'fa-chevron-down': !menus.properties, 'fa-chevron-up': menus.properties}"></i>
           </a>
-          <ul class="list-unstyled pl-3" *ngIf="menus.properties">
-            <li><a routerLink="/admin/properties" class="nav-link">🏘️ Liste des annonces</a></li>
-            <li><a href="#" class="nav-link">✅ Valider / refuser</a></li>
-            <li><a href="#" class="nav-link">📝 Modifier / supprimer</a></li>
-            <li><a href="#" class="nav-link">🔍 Filtrer par ville / type / statut</a></li>
-            <li><a href="#" class="nav-link">📅 Par date de publication</a></li>
-            <li><a href="#" class="nav-link">📊 Statistiques des annonces</a></li>
+          <ul class="list-unstyled pl-3" *ngIf="menus.properties" >
+            <li><a routerLink="/dashboard/annonces" class="nav-link">🏘️ Liste des annonces</a></li>
+            <li ><a routerLink="/dashboard/valider-annonces" class="nav-link">✅ Valider / Refuser</a></li>
+            <li><a routerLink="/dashboard/statistiques-annonces" class="nav-link">📊 Statistiques des annonces</a></li>
           </ul>
         </li>
 
-        <!-- Signalements -->
-        <li class="nav-item">
-          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('signalements')">
-            <span><i class="fas fa-exclamation-triangle"></i> Signalements</span>
-            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.signalements, 'fa-chevron-up': menus.signalements}"></i>
-          </a>
-          <ul class="list-unstyled pl-3" *ngIf="menus.signalements">
-            <li><a href="#" class="nav-link">🚩 Voir les signalements</a></li>
-            <li><a href="#" class="nav-link">🛡 Prendre des actions</a></li>
-          </ul>
-        </li>
+      
 
-        <!-- Villes & Devises -->
-        <li class="nav-item">
-          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('villesDevises')">
-            <span><i class="fas fa-city"></i> Villes & Devises</span>
-            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.villesDevises, 'fa-chevron-up': menus.villesDevises}"></i>
-          </a>
-          <ul class="list-unstyled pl-3" *ngIf="menus.villesDevises">
-            <li><a href="#" class="nav-link">🏙️ Gérer les villes</a></li>
-            <li><a href="#" class="nav-link">💱 Gérer les devises</a></li>
-          </ul>
-        </li>
-
+   
         <!-- Recommandations IA -->
         <li class="nav-item">
           <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('ia')">
@@ -123,12 +109,8 @@
             <i class="fas" [ngClass]="{'fa-chevron-down': !menus.stats, 'fa-chevron-up': menus.stats}"></i>
           </a>
           <ul class="list-unstyled pl-3" *ngIf="menus.stats">
-            <li><a href="#" class="nav-link">📊 Inscriptions par mois</a></li>
-            <li><a href="#" class="nav-link">📊 Connexions quotidiennes</a></li>
-            <li><a href="#" class="nav-link">📊 Villes les plus recherchées</a></li>
-            <li><a href="#" class="nav-link">📊 Biens les plus populaires</a></li>
-            <li><a href="#" class="nav-link">📊 Taux de conversion</a></li>
-            <li><a href="#" class="nav-link">📥 Export CSV/PDF</a></li>
+            <li><a routerLink="/dashboard/statistiques-dashboard" class="nav-link">📊 Tableau de bord</a></li>
+       
           </ul>
         </li>
 
@@ -139,8 +121,8 @@
             <i class="fas" [ngClass]="{'fa-chevron-down': !menus.roles, 'fa-chevron-up': menus.roles}"></i>
           </a>
           <ul class="list-unstyled pl-3" *ngIf="menus.roles">
-            <li><a href="#" class="nav-link">🔐 Affecter des rôles</a></li>
-            <li><a href="#" class="nav-link">🔧 Gérer les permissions</a></li>
+            <li><a routerLink="/dashboard/roles-access" class="nav-link">🔐 Affecter des rôles</a></li>
+          
           </ul>
         </li>
 
@@ -151,24 +133,12 @@
             <i class="fas" [ngClass]="{'fa-chevron-down': !menus.messages, 'fa-chevron-up': menus.messages}"></i>
           </a>
           <ul class="list-unstyled pl-3" *ngIf="menus.messages">
-            <li><a href="#" class="nav-link">📬 Messages reçus</a></li>
-            <li><a href="#" class="nav-link">🔔 Notifications globales</a></li>
-            <li><a href="#" class="nav-link">📢 Annonces officielles</a></li>
+            <li><a routerLink="/dashboard/messages" class="nav-link">🔔 Alertes </a></li>
+            
           </ul>
         </li>
 
-        <!-- Paramètres -->
-        <li class="nav-item">
-          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('parametres')">
-            <span><i class="fas fa-cog"></i> Paramètres</span>
-            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.parametres, 'fa-chevron-up': menus.parametres}"></i>
-          </a>
-          <ul class="list-unstyled pl-3" *ngIf="menus.parametres">
-            <li><a href="#" class="nav-link">⚙️ Infos générales</a></li>
-            <li><a href="#" class="nav-link">🌐 Langues supportées</a></li>
-            <li><a href="#" class="nav-link">⏳ Durée de publication</a></li>
-          </ul>
-        </li>
+       
 
         <!-- Journal d’activité -->
         <li class="nav-item">
@@ -177,16 +147,20 @@
             <i class="fas" [ngClass]="{'fa-chevron-down': !menus.journal, 'fa-chevron-up': menus.journal}"></i>
           </a>
           <ul class="list-unstyled pl-3" *ngIf="menus.journal">
-            <li><a href="#" class="nav-link">🕵️ Historique des actions</a></li>
-            <li><a href="#" class="nav-link">📅 Logs de connexion</a></li>
+            <li><a routerLink="/dashboard/journal-menu" class="nav-link"> 📋 Activité</a></li>
+  
           </ul>
         </li>
 
       </ul>
     </nav>
+    
 
     <!-- Main -->
-    <main class="col-lg-10 col-md-9 p-4">
+<main class="col-lg-10 col-md-9 p-4">
+  
+
+
 
       <!-- Statistiques principales -->
       <div class="row mb-4">
@@ -446,8 +420,14 @@
 
 
       </div> <!-- fin row bas de page -->
+  
 
     </main> <!-- fin main -->
-
+ 
   </div> <!-- fin row principal -->
-</div> <!-- fin container-fluid -->
+ 
+
+  </div> <!-- fin container-fluid -->
+    <!-- Contenu dynamique -->
+      <router-outlet></router-outlet>
+    

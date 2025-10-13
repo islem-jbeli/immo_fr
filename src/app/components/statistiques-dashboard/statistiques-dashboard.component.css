@@ -1,0 +1,44 @@
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.stats-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.stats-menu li {
+  margin-bottom: 0.5rem;
+}
+
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.chart-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.chart-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}

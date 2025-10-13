@@ -1,0 +1,235 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>👥 Liste des utilisateurs</h2>
+  <div>
+    <button class="btn btn-outline-secondary me-2" (click)="toggleArchivedView()">
+      <i class="fas" [ngClass]="showArchived ? 'fa-users' : 'fa-archive'"></i>
+      {{ showArchived ? 'Voir utilisateurs actifs' : 'Voir utilisateurs archivés' }}
+    </button>
+  <button class="btn btn-outline-danger" (click)="toggleDeletedView()">
+  <i class="fas fa-trash"></i>
+  {{ showDeleted ? 'Masquer supprimés' : 'Voir utilisateurs supprimés' }}
+</button>
+
+  </div>
+</div>
+
+<!-- Filtres -->
+<div class="row mb-3 g-2">
+  <div class="col-md-3">
+    <input type="text" class="form-control" placeholder="Rechercher nom ou email"
+           [(ngModel)]="searchTerm" (input)="applyFilters()">
+  </div>
+
+  <div class="col-md-2">
+    <select class="form-select" [(ngModel)]="filterRole" (change)="applyFilters()">
+      <option value="all">Tous les rôles</option>
+      <option value="Admin">Admin</option>
+      <option value="Propriétaire">Propriétaire</option>
+      <option value="Locataire">Locataire</option>
+      <option value="Acheteur">Acheteur</option>
+    </select>
+  </div>
+
+  <div class="col-md-2">
+    <select class="form-select" [(ngModel)]="filterStatus" (change)="applyFilters()">
+      <option value="all">Tous les statuts</option>
+      <option value="active">Actif</option>
+      <option value="inactive">Inactif</option>
+    </select>
+  </div>
+
+  <div class="col-md-2">
+    <select class="form-select" [(ngModel)]="filterCity" (change)="applyFilters()">
+      <option value="all">Toutes les villes</option>
+      <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+    </select>
+  </div>
+
+  <div class="col-md-2">
+    <input type="date" class="form-control" [(ngModel)]="filterDate" (change)="applyFilters()">
+  </div>
+
+  <div class="col-md-1 d-flex justify-content-end">
+    <button class="btn btn-outline-primary" (click)="exportCSV()">
+      <i class="fas fa-file-csv me-1"></i> Export CSV
+    </button>
+  </div>
+</div>
+
+<!-- Table responsive -->
+<div class="table-responsive">
+  <table class="table table-hover table-bordered shadow-sm">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th (click)="sortBy('name')" style="cursor:pointer;">Nom <i class="fas fa-sort"></i></th>
+        <th (click)="sortBy('email')" style="cursor:pointer;">Email <i class="fas fa-sort"></i></th>
+        <th (click)="sortBy('role')" style="cursor:pointer;">Rôle <i class="fas fa-sort"></i></th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of paginatedUsers; let i = index">
+        <td>{{ (currentPage-1)*itemsPerPage + i + 1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <span class="badge" [ngClass]="user.active ? 'bg-success' : 'bg-danger'">
+            {{ user.active ? 'Actif' : 'Inactif' }}
+          </span>
+        </td>
+        <td class="d-flex justify-content-center gap-2">
+          <button class="btn btn-primary btn-sm" title="Voir profil" (click)="viewUser(user)">
+            <i class="fas fa-user"></i> Voir
+          </button>
+
+          <button class="btn btn-info btn-sm text-white" (click)="editUser(user)">
+            <i class="fas fa-edit me-1"></i> Modifier
+          </button>
+
+          <button class="btn btn-secondary btn-sm" (click)="viewHistory(user)">
+            <i class="fas fa-history me-1"></i> Historique
+          </button>
+
+          <button class="btn btn-warning btn-sm" (click)="toggleStatus(user)">
+            <i class="fas me-1" [ngClass]="user.active ? 'fa-ban' : 'fa-check'"></i>
+            {{ user.active ? 'Désactiver' : 'Activer' }}
+          </button>
+
+          <div class="dropdown">
+            <button class="btn btn-danger btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <i class="fas fa-trash me-1"></i> Supprimer
+            </button>
+            <ul class="dropdown-menu">
+              <li *ngIf="!user.archived">
+                <a class="dropdown-item text-warning" href="#" (click)="deleteUser(user.id, true, false, $event)">
+                  <i class="fas fa-archive me-2"></i> Archiver le compte
+                </a>
+              </li>
+              <li *ngIf="!user.archived">
+                <a class="dropdown-item text-danger" href="#" (click)="deleteUser(user.id, false, false, $event)">
+                  <i class="fas fa-trash-alt me-2"></i> Supprimer définitivement
+                </a>
+              </li>
+              <li *ngIf="!user.archived">
+                <a class="dropdown-item text-danger" href="#" (click)="deleteUser(user.id, false, true, $event)">
+                  <i class="fas fa-trash me-2"></i> Supprimer toutes les annonces
+                </a>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagination -->
+<nav *ngIf="totalPages() > 1" class="mt-3">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="currentPage===1">
+      <a class="page-link" (click)="changePage(currentPage-1)">Précédent</a>
+    </li>
+    <li class="page-item" *ngFor="let p of [].constructor(totalPages()); let idx = index"
+        [class.active]="currentPage===idx+1">
+      <a class="page-link" (click)="changePage(idx+1)">{{ idx+1 }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage===totalPages()">
+      <a class="page-link" (click)="changePage(currentPage+1)">Suivant</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Modal Modifier Utilisateur -->
+<div *ngIf="editingUser" class="modal fade show d-block" tabindex="-1" aria-labelledby="editUserModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modifier l’utilisateur</h5>
+        <button type="button" class="btn-close" (click)="cancelEdit()"></button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm" (ngSubmit)="saveUser()">
+          <div class="mb-3">
+            <label class="form-label">Nom</label>
+            <input type="text" class="form-control" [(ngModel)]="editingUser.name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Prénom</label>
+            <input type="text" class="form-control" [(ngModel)]="editingUser.firstName" name="firstName" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="editingUser.email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Rôle</label>
+            <select class="form-select" [(ngModel)]="editingUser.role" name="role" required>
+              <option value="Admin">Admin</option>
+              <option value="Propriétaire">Propriétaire</option>
+              <option value="Locataire">Locataire</option>
+              <option value="Acheteur">Acheteur</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Téléphone</label>
+            <input type="text" class="form-control" [(ngModel)]="editingUser.phone" name="phone">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Adresse</label>
+            <input type="text" class="form-control" [(ngModel)]="editingUser.address" name="address">
+          </div>
+          <div class="text-end">
+            <button type="button" class="btn btn-secondary me-2" (click)="cancelEdit()">Annuler</button>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Profil utilisateur -->
+<div class="card shadow-sm mt-3" *ngIf="selectedUser">
+  <div class="card-header bg-primary text-white">
+    Profil de {{ selectedUser.name }}
+  </div>
+  <div class="card-body">
+    <p><strong>Prénom:</strong> {{ selectedUser.firstName }}</p>
+    <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+    <p><strong>Rôle:</strong> {{ selectedUser.role }}</p>
+    <p><strong>Ville:</strong> {{ selectedUser.city }}</p>
+    <p><strong>Téléphone:</strong> {{ selectedUser.phone }}</p>
+    <p><strong>Adresse:</strong> {{ selectedUser.address }}</p>
+    <p><strong>Status:</strong> 
+      <span [ngClass]="selectedUser.active ? 'text-success' : 'text-danger'">
+        {{ selectedUser.active ? 'Actif' : 'Inactif' }}
+      </span>
+    </p>
+    <button class="btn btn-secondary btn-sm mt-2" (click)="selectedUser=null">Fermer</button>
+  </div>
+</div>
+
+<!-- Modal Historique Utilisateur -->
+<div *ngIf="selectedHistoryUser" class="modal fade show d-block" tabindex="-1" aria-labelledby="historyModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Historique de {{ selectedHistoryUser.name }}</h5>
+        <button type="button" class="btn-close" (click)="selectedHistoryUser=null"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li *ngFor="let entry of userHistory[selectedHistoryUser.id]" class="list-group-item">
+            {{ entry }}
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="selectedHistoryUser=null">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

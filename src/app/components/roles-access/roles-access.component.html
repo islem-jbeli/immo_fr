@@ -1,0 +1,43 @@
+<div class="container mt-4">
+
+  <!-- Section Affecter des rôles -->
+  <h2>Affecter des rôles</h2>
+  <table class="table table-striped mb-5">
+    <thead>
+      <tr>
+        <th>Utilisateur</th>
+        <th>Email</th>
+        <th>Rôle actuel</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.nom }} {{ user.prenom }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <select [(ngModel)]="user.role" class="form-select form-select-sm d-inline w-auto">
+            <option value="Visiteur">Visiteur</option>
+            <option value="Inscrit">Inscrit</option>
+            <option value="Administrateur">Administrateur</option>
+          </select>
+          <button class="btn btn-sm btn-success ms-2" (click)="updateRole(user)">Enregistrer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Section Gérer les permissions -->
+  <h2>Gérer les permissions</h2>
+  <div *ngFor="let role of roles" class="mb-3 p-3 border rounded shadow-sm">
+    <h5>{{ role.name }}</h5>
+    <div class="form-check" *ngFor="let perm of allPermissions">
+      <input type="checkbox" class="form-check-input" [(ngModel)]="role.permissions[perm]" id="{{ role.name }}-{{ perm }}">
+      <label class="form-check-label" for="{{ role.name }}-{{ perm }}">{{ perm }}</label>
+    </div>
+  </div>
+
+  <button class="btn btn-primary mt-2" (click)="savePermissions()">Enregistrer les permissions</button>
+
+</div>

@@ -1,0 +1,104 @@
+<div class="container mt-4">
+  <h2 class="mb-4"><i class="fas fa-envelope text-primary me-2"></i>Centre de messages</h2>
+
+  <!-- Onglets -->
+  <ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="activeTab === 'messages'" (click)="activeTab='messages'">
+        📥 Messages reçus
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="activeTab === 'notifications'" (click)="activeTab='notifications'">
+        🔔 Notifications
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="activeTab === 'annonces'" (click)="activeTab='annonces'">
+        📢 Annonces officielles
+      </button>
+    </li>
+  </ul>
+
+  <!-- Messages reçus -->
+  <div *ngIf="activeTab === 'messages'">
+    <div class="list-group shadow-sm rounded">
+      <div class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let msg of messages">
+        <div>
+          <strong>{{ msg.sender }}</strong> - {{ msg.subject }}
+          <p class="mb-0 text-muted">{{ msg.date | date:'short' }}</p>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-primary me-2" (click)="readMessage(msg)">Lire</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteMessage(msg)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notifications -->
+  <div *ngIf="activeTab === 'notifications'">
+    <div class="list-group shadow-sm rounded">
+      <div class="list-group-item" *ngFor="let notif of notifications">
+        <strong>{{ notif.title }}</strong>
+        <p class="mb-0">{{ notif.description }}</p>
+        <small class="text-muted">{{ notif.date | date:'short' }}</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Annonces officielles -->
+  <div *ngIf="activeTab === 'annonces'">
+    <div class="list-group shadow-sm rounded">
+      <div class="list-group-item" *ngFor="let ann of annonces">
+        <strong>{{ ann.title }}</strong>
+        <p class="mb-0">{{ ann.content }}</p>
+        <small class="text-muted">{{ ann.date | date:'short' }}</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal lecture message -->
+<div class="modal fade show d-block" tabindex="-1" *ngIf="selectedMessage && !showReplyModal">
+  <div class="modal-dialog">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ selectedMessage.subject }}</h5>
+        <button type="button" class="btn-close" (click)="closeMessage()"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>De :</strong> {{ selectedMessage.sender }}</p>
+        <p>{{ selectedMessage.content }}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeMessage()">Fermer</button>
+        <button class="btn btn-success" (click)="openReply(selectedMessage)">Répondre</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Répondre -->
+<div class="modal fade show d-block" tabindex="-1" *ngIf="showReplyModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (ngSubmit)="sendReply()">
+        <div class="modal-header">
+          <h5 class="modal-title">Répondre à {{ selectedMessage?.sender }}</h5>
+          <button type="button" class="btn-close" (click)="closeReply()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" [(ngModel)]="replyContent" name="replyContent" rows="4" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeReply()">Annuler</button>
+          <button type="submit" class="btn btn-success">Envoyer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

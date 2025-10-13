@@ -1,0 +1,125 @@
+<div class="container mt-4">
+  <h3 class="mb-4 text-primary text-center">🏡 Mes Annonces</h3>
+
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let annonce of annonces">
+      <div class="card shadow-lg border-0 rounded-3 overflow-hidden h-100">
+        
+        <!-- Image principale -->
+        <div class="position-relative">
+          <img [src]="annonce.photo || placeholder"
+               class="card-img-top"
+               alt="Photo annonce"
+               style="height:220px; object-fit:cover;">
+          <span class="badge position-absolute top-0 end-0 m-2 px-3 py-2 shadow"
+                [ngClass]="annonce.status === 'Publiée' ? 'bg-success' : 'bg-warning text-dark'">
+            {{ annonce.status }}
+          </span>
+        </div>
+
+        <!-- Infos principales -->
+        <div class="card-body">
+          <h5 class="fw-bold text-dark">{{ annonce.title }}</h5>
+          <p class="text-muted mb-1"><i class="fas fa-map-marker-alt me-1"></i> {{ annonce.city }}</p>
+          <p class="mb-2"><i class="fas fa-money-bill-wave me-1"></i> 
+            <b class="text-primary">{{ annonce.price | number }} TND</b></p>
+          <p class="small text-muted">
+            <i class="fas fa-ruler-combined me-1"></i> {{ annonce.area }} m² • 
+            <i class="fas fa-bed ms-2 me-1"></i> {{ annonce.bedrooms }} ch • 
+            <i class="fas fa-bath ms-2 me-1"></i> {{ annonce.bathrooms }} sdb
+          </p>
+
+          <!-- Mini galerie -->
+          <div class="d-flex flex-wrap gap-2 my-2">
+            <img *ngFor="let img of annonce.gallery"
+                 [src]="img"
+                 class="img-thumbnail"
+                 style="cursor:pointer; width:65px; height:65px; object-fit:cover;"
+                 (click)="openImage(img)">
+          </div>
+
+          <!-- Actions -->
+          <div class="d-flex justify-content-between mt-3 flex-wrap gap-2">
+            <button class="btn btn-sm btn-outline-primary" (click)="editAnnonce(annonce.id)">
+              <i class="fas fa-edit"></i> Modifier
+            </button>
+            <button class="btn btn-sm btn-outline-danger" (click)="deleteAnnonce(annonce.id)">
+              <i class="fas fa-trash"></i> Supprimer
+            </button>
+            <button class="btn btn-sm btn-outline-info" (click)="viewDetails(annonce)" 
+                    data-bs-toggle="modal" data-bs-target="#detailsModal">
+              <i class="fas fa-eye"></i> Détails
+            </button>
+          </div>
+
+          <!-- Formulaire de modification inline -->
+          <div *ngIf="editingAnnonceId === annonce.id" class="mt-3 border p-2 rounded bg-light">
+            <div class="mb-2">
+              <label class="form-label small">Titre</label>
+              <input class="form-control form-control-sm" [(ngModel)]="editAnnonceData.title">
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Ville</label>
+              <input class="form-control form-control-sm" [(ngModel)]="editAnnonceData.city">
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Prix (TND)</label>
+              <input type="number" class="form-control form-control-sm" [(ngModel)]="editAnnonceData.price">
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Surface (m²)</label>
+              <input type="number" class="form-control form-control-sm" [(ngModel)]="editAnnonceData.area">
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Chambres</label>
+              <input type="number" class="form-control form-control-sm" [(ngModel)]="editAnnonceData.bedrooms">
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Salles de bain</label>
+              <input type="number" class="form-control form-control-sm" [(ngModel)]="editAnnonceData.bathrooms">
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Description</label>
+              <textarea class="form-control form-control-sm" rows="2" [(ngModel)]="editAnnonceData.description"></textarea>
+            </div>
+            <div class="d-flex gap-2 mt-2">
+              <button class="btn btn-sm btn-success" (click)="saveAnnonce()">💾 Sauvegarder</button>
+              <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">❌ Annuler</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal détails -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">{{ selectedAnnonce?.title }}</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <tr><th>Ville</th><td>{{ selectedAnnonce?.city }}</td></tr>
+          <tr><th>Prix</th><td>{{ selectedAnnonce?.price | number }} TND</td></tr>
+          <tr><th>Surface</th><td>{{ selectedAnnonce?.area }} m²</td></tr>
+          <tr><th>Chambres</th><td>{{ selectedAnnonce?.bedrooms }}</td></tr>
+          <tr><th>Salles de bain</th><td>{{ selectedAnnonce?.bathrooms }}</td></tr>
+          <tr><th>Description</th><td>{{ selectedAnnonce?.description }}</td></tr>
+        </table>
+
+        <div class="d-flex flex-wrap gap-2">
+          <img *ngFor="let img of selectedAnnonce?.gallery"
+               [src]="img"
+               class="img-thumbnail"
+               style="cursor:pointer; width:150px; height:150px; object-fit:cover;"
+               (click)="openImage(img)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

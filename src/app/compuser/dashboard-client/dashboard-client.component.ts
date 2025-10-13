@@ -1,13 +1,14 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { CommonModule } from '@angular/common'; // <-- Ajouter ceci
-
+import { CommonModule } from '@angular/common'; 
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-client',
     standalone: true,
-    imports: [CommonModule], // <-- Ajouter ici
-  templateUrl: './dashboard-client.component.html',
+  imports: [CommonModule, RouterModule],
+    templateUrl: './dashboard-client.component.html',
   styleUrls: ['./dashboard-client.component.css']
 })
 export class DashboardClientComponent implements AfterViewInit {
@@ -71,6 +72,25 @@ export class DashboardClientComponent implements AfterViewInit {
         }]
       }
     });
+  }
+
+
+constructor(private router: Router) {}
+
+isProfilPage(): boolean { 
+  return this.router.url === '/dashboard-client/profil'; 
+}
+
+  isAnnonceuserPage(): boolean { 
+    return this.router.url === '/dashboard-client/annonceuser'; 
+  }
+
+  isFavorisPage(): boolean { 
+    return this.router.url === '/dashboard-client/favoris'; 
+  }
+
+  isMesMessagesPage(): boolean {
+    return this.router.url === '/dashboard-client/mes-messages';
   }
 
 }

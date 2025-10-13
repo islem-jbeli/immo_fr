@@ -1,0 +1,36 @@
+/* Cartes principales */
+.card.hover-scale {
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 0.75rem;
+}
+
+.card.hover-scale:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Titres */
+h2 {
+  font-size: 1.75rem;
+}
+
+.card-header {
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+  .card.hover-scale h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Couleurs cartes */
+.text-primary { color: #0d6efd !important; }
+.text-success { color: #28a745 !important; }
+.text-secondary { color: #6c757d !important; }
+.text-warning { color: #ffc107 !important; }

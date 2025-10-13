@@ -5,6 +5,7 @@ import { FooterComponent } from './views/footer/footer.component';
 import { AboutComponent } from './views/about/about.component';
 import { NgIf } from '@angular/common';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -20,4 +21,7 @@ export class AppComponent {
   isAdminRoute(): boolean {
     return this.router.url.includes('dashboard'); // <-- vérifie si on est sur le dashboard
   }
+
+
+
 }

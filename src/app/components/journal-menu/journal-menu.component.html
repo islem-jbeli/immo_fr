@@ -1,0 +1,70 @@
+<div class="container mt-4">
+  <h2>Journal</h2>
+
+  <!-- Boutons pour basculer entre les vues -->
+  <div class="mb-3">
+    <button class="btn btn-primary me-2" (click)="toggleView('actions')" [class.active]="showActionLogs">🕵️ Historique des actions</button>
+    <button class="btn btn-secondary" (click)="toggleView('logins')" [class.active]="!showActionLogs">📅 Logs de connexion</button>
+<button class="btn btn-outline-success float-end" 
+        (click)="exportData(showActionLogs ? 'actions' : 'logins')">
+  Exporter CSV/PDF
+</button>
+  </div>
+
+  <!-- Historique des actions -->
+  <div *ngIf="showActionLogs">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Utilisateur</th>
+          <th>Action</th>
+          <th>Statut</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of actionLogs">
+          <td>{{ log.user }}</td>
+          <td>{{ log.action }}</td>
+          <td>
+            <span class="badge" [ngClass]="{
+              'bg-success': log.status === 'Succès',
+              'bg-danger': log.status === 'Échec'
+            }">{{ log.status }}</span>
+          </td>
+          <td>{{ log.date | date:'dd/MM/yyyy HH:mm' }}</td>
+        </tr>
+        <tr *ngIf="actionLogs.length === 0">
+          <td colspan="4" class="text-center text-muted">Aucun historique disponible</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Logs de connexion -->
+  <div *ngIf="!showActionLogs">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Utilisateur</th>
+          <th>Type</th>
+          <th>IP</th>
+          <th>Appareil / Navigateur</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of loginLogs">
+          <td>{{ log.user }}</td>
+          <td>{{ log.type }}</td>
+          <td>{{ log.ip }}</td>
+          <td>{{ log.device }}</td>
+          <td>{{ log.date | date:'dd/MM/yyyy HH:mm' }}</td>
+        </tr>
+        <tr *ngIf="loginLogs.length === 0">
+          <td colspan="5" class="text-center text-muted">Aucun log de connexion disponible</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
