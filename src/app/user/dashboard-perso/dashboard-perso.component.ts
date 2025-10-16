@@ -35,27 +35,9 @@ export class DashboardPersoComponent {
       color: 'text-warning',
       link: '/dashboard-perso/recommandations'
     },
-    {
-      title: 'Messages',
-      subtitle: 'Voir vos messages reçus',
-      emoji: '✉️',
-      color: 'text-success',
-      link: '/dashboard-perso/messagesuser'
-    },
-    {
-      title: 'Paramètres',
-      subtitle: 'Gérer votre compte',
-      emoji: '⚙️',
-      color: 'text-secondary',
-      link: '/dashboard-perso/account-settings'
-    },
-    {
-      title: 'Historique des visites',
-      subtitle: 'Voir les biens consultés',
-      emoji: '⏰',
-      color: 'text-primary',
-      link: '/dashboard-perso/visites'
-    }
+    
+ 
+  
   ];
 
 // Activité mensuelle (biens vus, visites, recherches)
