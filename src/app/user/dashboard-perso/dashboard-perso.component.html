@@ -1,32 +1,53 @@
 <div class="dashboard-wrapper d-flex" *ngIf="!isSavedSearchesPage() && !isfavorisuserPage()
 && !isMessagesuserPage() && !isAccountSettingsPage() && !isVisitesPage()">
 
-  <!-- Sidebar -->
-  <nav class="sidebar p-3 d-flex flex-column">
-    <div class="sidebar-header mb-4 text-center">
-      <h4 class="mb-0">🏠 Mon Dashboard</h4>
-    </div>
-    <ul class="nav flex-column flex-fill">
-      <li class="nav-item mb-2">
-        <a class="nav-link" routerLink="/dashboard-perso/saved-searches">🔍 Recherches</a>
-      </li>
-      <li class="nav-item mb-2">
-        <a class="nav-link" routerLink="/dashboard-perso/favorisuser">❤️ Favoris</a>
-      </li>
-      <li class="nav-item mb-2">
-        <a class="nav-link" routerLink="/dashboard-perso/recommandations">💡 Recommandations</a>
-      </li>
-      <li class="nav-item mb-2">
-        <a class="nav-link" routerLink="/dashboard-perso/messagesuser">✉️ Messages</a>
-      </li>
-      <li class="nav-item mb-2">
-        <a class="nav-link" routerLink="/dashboard-perso/account-settings">⚙️ Paramètres</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/dashboard-perso/visites">⏰ Historique</a>
-      </li>
-    </ul>
-  </nav>
+  <nav class="sidebar">
+  <div class="sidebar-logo">
+     <h4>🏠 Dashboard</h4>
+  </div>
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard-perso/saved-searches" >
+        <i class="icon">🔍</i>
+        <span class="link-text">Recherches</span>
+        <span class="badge">12</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard-perso/favorisuser" >
+        <i class="icon">❤️</i>
+        <span class="link-text">Favoris</span>
+        <span class="badge">5</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard-perso/recommandations" >
+        <i class="icon">💡</i>
+        <span class="link-text">Recommandations</span>
+        <span class="badge new">!</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard-perso/messagesuser">
+        <i class="icon">✉️</i>
+        <span class="link-text">Messages</span>
+        <span class="badge">3</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard-perso/account-settings" [class.active]="isAccountSettingsPage()">
+        <i class="icon">⚙️</i>
+        <span class="link-text">Paramètres</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard-perso/visites" [class.active]="isVisitesPage()">
+        <i class="icon">⏰</i>
+        <span class="link-text">Historique</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 
   <!-- Main content -->
   <div class="dashboard-main flex-fill p-4">

@@ -12,33 +12,30 @@ import { NgChartsModule } from 'ng2-charts';
 })
 export class DashboardPersoComponent {
 
-  // Cartes principales
-  cards = [
-    {
-      title: 'Mes recherches',
-      subtitle: 'Voir vos recherches sauvegardées',
-      emoji: '🔍',
-      color: 'text-info',
-      link: '/dashboard-perso/saved-searches'
-    },
-    {
-      title: 'Favoris',
-      subtitle: 'Voir vos biens favoris',
-      emoji: '❤️',
-      color: 'text-danger',
-      link: '/dashboard-perso/favorisuser'
-    },
-    {
-      title: 'Recommandations',
-      subtitle: 'Suggestions personnalisées',
-      emoji: '💡',
-      color: 'text-warning',
-      link: '/dashboard-perso/recommandations'
-    },
-    
- 
-  
-  ];
+cards = [
+  {
+    title: 'Mes recherches',
+    subtitle: 'Consultez toutes vos recherches sauvegardées et retrouvez rapidement les biens qui vous intéressent',
+    emoji: '🔍',
+    color: 'text-info',
+    link: '/dashboard-perso/saved-searches'
+  },
+  {
+    title: 'Favoris',
+    subtitle: 'Accédez à vos biens favoris et gérez vos préférences facilement',
+    emoji: '❤️',
+    color: 'text-danger',
+    link: '/dashboard-perso/favorisuser'
+  },
+  {
+    title: 'Recommandations',
+    subtitle: 'Découvrez les suggestions personnalisées de l’IA basées sur vos intérêts et activités',
+    emoji: '💡',
+    color: 'text-warning',
+    link: '/dashboard-perso/recommandations'
+  }
+];
+
 
 // Activité mensuelle (biens vus, visites, recherches)
 activityChartData = {
