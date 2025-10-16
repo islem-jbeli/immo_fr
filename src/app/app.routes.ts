@@ -37,6 +37,12 @@ import { StatistiqueuserComponent } from './compuser/statistiqueuser/statistique
 import { ContactsComponent } from './compuser/contacts/contacts.component';
 
 import { DashboardPersoComponent } from './user/dashboard-perso/dashboard-perso.component';
+import { SavedSearchesComponent } from './user/saved-searches/saved-searches.component';
+import { FavorisuserComponent } from './user/favorisuser/favorisuser.component';
+import { MessagesuserComponent } from './user/messagesuser/messagesuser.component';
+import { AccountSettingsComponent } from './user/account-settings/account-settings.component';
+import { VisitesComponent } from './user/visites/visites.component';
+
 
 
 export const routes: Routes = [
@@ -88,7 +94,7 @@ export const routes: Routes = [
 { path: 'mes-messages', component: MesMessagesComponent },
 { path: 'ajouter-annonce', component: AjouterAnnonceComponent },
 { path: 'statistiqueuser', component: StatistiqueuserComponent },
-    { path: 'contacts', component: ContactsComponent } // <-- ici
+    { path: 'contacts', component: ContactsComponent } 
 
 
       ]
@@ -100,7 +106,11 @@ export const routes: Routes = [
   component: DashboardPersoComponent ,
   children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-
+      { path: 'saved-searches', component: SavedSearchesComponent },
+      { path: 'favorisuser', component: FavorisuserComponent }, // page liste favoris
+      { path: 'messagesuser', component: MessagesuserComponent },
+      { path: 'account-settings', component: AccountSettingsComponent },
+      { path: 'visites', component: VisitesComponent },
     ]
   }
 

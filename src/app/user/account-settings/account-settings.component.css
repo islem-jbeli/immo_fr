@@ -1,0 +1,91 @@
+/* ------------------------ */
+/* Container global */
+.settings-container {
+  font-family: 'Inter', sans-serif;
+  color: #1c1c1c;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* ------------------------ */
+/* Cartes */
+.card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  border: none;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* ------------------------ */
+/* Form Controls */
+.form-control {
+  border-radius: 0.6rem;
+  padding: 0.65rem 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Textarea */
+textarea.form-control {
+  resize: none;
+  min-height: 120px;
+}
+
+/* ------------------------ */
+/* Boutons */
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  padding: 0.55rem 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 6px 15px rgba(11, 94, 215, 0.3);
+}
+
+/* Hover scale général */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* ------------------------ */
+/* Labels et titres */
+.settings-container h2, 
+.settings-container h3, 
+.settings-container label {
+  color: #0d3b66;
+  font-weight: 600;
+}
+
+/* ------------------------ */
+/* Responsive */
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+}

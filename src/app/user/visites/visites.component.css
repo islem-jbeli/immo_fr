@@ -1,0 +1,229 @@
+/* -------------------------------------------------- */
+/* 🌆 Conteneur principal */
+.visites-container {
+  min-height: 80vh;
+  background: linear-gradient(135deg, #f0f4ff, #eef3f8);
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1a355b;
+  padding: 3rem 1rem;
+}
+
+/* -------------------------------------------------- */
+/* Titre principal */
+.visites-container h2 {
+  font-weight: 700;
+  color: #1c548b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 2.5rem;
+}
+.visites-container h2 i {
+  color: #0d6efd;
+  font-size: 1.6rem;
+}
+
+/* -------------------------------------------------- */
+/* 🏡 Cartes d'annonces : glass + neumorphism léger */
+.property-card {
+  border: none;
+  border-radius: 1.5rem;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.property-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+}
+
+/* Image du bien */
+.property-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1.5rem 0 0 1.5rem;
+  transition: transform 0.5s ease;
+}
+
+.property-card:hover .property-image {
+  transform: scale(1.08);
+}
+
+/* Corps de la carte */
+.card-body {
+  padding: 1.6rem;
+}
+
+.card-title {
+  color: #0d3b66;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.text-muted {
+  color: #6c757d !important;
+  font-size: 0.95rem;
+}
+
+small.text-secondary {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* -------------------------------------------------- */
+/* 👁️ Bouton "Voir l’annonce" ultra-moderne */
+.btn-view {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0d6efd, #1c548b);
+  color: #fff;
+  border: none;
+  padding: 0.55rem 1.4rem;
+  border-radius: 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 6px 20px rgba(13,110,253,0.3);
+  letter-spacing: 0.3px;
+}
+
+.btn-view:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, #1c548b, #0b5ed7);
+  box-shadow: 0 10px 30px rgba(13,110,253,0.35);
+}
+
+.btn-view::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+  transition: all 0.6s ease;
+  border-radius: inherit;
+}
+
+.btn-view:hover::after {
+  left: 120%;
+}
+
+.btn-view i {
+  transition: transform 0.35s ease;
+}
+
+.btn-view:hover i {
+  transform: translateX(4px);
+}
+
+/* -------------------------------------------------- */
+/* 🏠 Détails de l’annonce sélectionnée */
+.selected-property-card {
+  border-radius: 1.5rem;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: all 0.35s ease;
+}
+
+.selected-property-card img {
+  border-radius: 1.25rem;
+  object-fit: cover;
+  max-height: 300px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.selected-property-card h5 {
+  color: #0d3b66;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+/* Bouton fermer */
+.btn-close-view {
+  border-radius: 1rem;
+  font-weight: 600;
+  padding: 0.55rem 1.4rem;
+  transition: all 0.3s ease;
+  background-color: #f0f4f8;
+  color: #1c548b;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-top: auto;
+}
+
+.btn-close-view:hover {
+  background-color: #1c548b;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* -------------------------------------------------- */
+/* 🔔 Message d'alerte */
+.alert-info {
+  background: rgba(233,244,255,0.9);
+  border: none;
+  color: #1c548b;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  font-weight: 500;
+  box-shadow: 0 8px 25px rgba(13,110,253,0.15);
+  text-align: center;
+}
+
+/* -------------------------------------------------- */
+/* ✨ Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------------------------------------- */
+/* 📱 Responsive */
+@media (max-width: 992px) {
+  .property-card {
+    border-radius: 1.2rem;
+  }
+
+  .property-image {
+    border-radius: 1.2rem 1.2rem 0 0;
+    height: 220px;
+  }
+
+  .btn-view {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .card-body {
+    padding: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .visites-container h2 {
+    font-size: 1.6rem;
+  }
+}

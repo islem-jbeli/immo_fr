@@ -1,0 +1,35 @@
+<div class="saved-searches-container d-flex flex-column align-items-center py-5">
+
+  <!-- Titre -->
+  <h2 class="mb-5 text-center fw-bold text-primary" style="font-size: 2rem;">🔍 Mes recherches enregistrées</h2>
+
+  <!-- Liste des recherches -->
+  <div *ngIf="savedSearches.length > 0; else noSearches" class="w-100 w-md-75 w-lg-60">
+    <div *ngFor="let search of savedSearches" class="card mb-4 shadow border-light rounded-4 p-3 search-card" style="transition: transform 0.2s, box-shadow 0.2s;">
+      <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+        
+        <!-- Info recherche -->
+        <div class="mb-2 mb-md-0">
+          <h5 class="card-title fw-bold text-dark">{{ search.title }}</h5>
+          <p class="card-text text-muted mb-0">{{ search.criteria }}</p>
+        </div>
+
+        <!-- Actions selon permissions -->
+        <div class="d-flex gap-2 mt-2 mt-md-0">
+          <button *ngIf="canDelete" class="btn btn-outline-danger btn-sm d-flex align-items-center" (click)="deleteSearch(search.id)">
+            🗑️ Supprimer
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Message si aucune recherche -->
+  <ng-template #noSearches>
+    <div class="alert alert-info text-center w-100 w-md-75 w-lg-60 rounded-4 shadow-sm p-4" style="font-size: 1.1rem;">
+      Vous n'avez encore enregistré aucune recherche.
+    </div>
+  </ng-template>
+
+</div>
