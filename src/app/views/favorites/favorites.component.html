@@ -1,0 +1,24 @@
+<h2>Mes Favoris</h2>
+
+<!-- Message si aucun favori -->
+<div *ngIf="favorites.length === 0">
+  <p>Aucun favori pour le moment.</p>
+</div>
+
+<!-- Liste des favoris -->
+<div class="row" *ngFor="let fav of favorites">
+  <div class="col-md-4 mb-3">
+    <div class="card">
+      <img src="{{ fav.property.imageUrl }}" class="card-img-top" alt="{{ fav.property.title }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ fav.property.title }}</h5>
+        <p class="card-text">{{ fav.property.description }}</p>
+        <p class="card-text"><strong>Prix:</strong> {{ fav.property.price }} TND</p>
+        <button class="btn btn-danger btn-sm" (click)="toggleFavorite(fav.property)">
+  <i class="bi" [ngClass]="isFavorite(fav.property) ? 'bi-heart-fill text-danger' : 'bi-heart'"></i>
+</button>
+
+      </div>
+    </div>
+  </div>
+</div>

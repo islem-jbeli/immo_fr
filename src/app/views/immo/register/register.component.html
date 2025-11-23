@@ -1,35 +1,44 @@
 <div class="register-page">
   <div class="register-card">
-
-    <h2>Create an Account</h2>
-
+    <h2>Créer un compte</h2>
     <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
       <div class="form-group">
         <i class="fas fa-user"></i>
-        <input type="text" name="fullname" ngModel placeholder="Full Name" required />
+        <input type="text" name="nom" ngModel placeholder="Nom" required />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-user"></i>
+        <input type="text" name="prenom" ngModel placeholder="Prénom" required />
       </div>
 
       <div class="form-group">
         <i class="fas fa-envelope"></i>
-        <input type="email" name="email" ngModel placeholder="Email Address" required />
+        <input type="email" name="email" ngModel placeholder="Email" required />
       </div>
 
       <div class="form-group">
         <i class="fas fa-lock"></i>
-        <input type="password" name="password" ngModel placeholder="Password" required />
+        <input type="password" name="motDePasse" ngModel placeholder="Mot de passe" required />
       </div>
 
       <div class="form-group">
         <i class="fas fa-lock"></i>
-        <input type="password" name="confirmPassword" ngModel placeholder="Confirm Password" required />
+        <input type="password" name="confirmMotDePasse" ngModel placeholder="Confirmer le mot de passe" required />
       </div>
 
-      <button type="submit">Create Account</button>
+      <button type="submit" [disabled]="loading || !registerForm.valid">
+        {{ loading ? 'Création...' : 'Créer un compte' }}
+      </button>
     </form>
 
+    <div *ngIf="errorMessage" class="server-error">
+      {{ errorMessage }}
+    </div>
+
     <div class="links">
-      <span>Already have an account?</span>
-      <a routerLink="/login">Login</a>
+      <span>Déjà un compte ?</span>
+      <a routerLink="/login">Se connecter</a>
     </div>
   </div>
 </div>

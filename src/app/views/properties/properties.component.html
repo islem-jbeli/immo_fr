@@ -81,7 +81,12 @@
                   <span *ngFor="let badge of prop.badges" class="badge" [ngClass]="badge.class">{{badge.text}}</span>
                 </div>
                 <div class="property-overlay">
-                  <button class="favorite-btn"><i class="bi bi-heart"></i></button>
+                  <button class="btn btn-outline-secondary btn-sm"
+        *ngIf="auth.isLogged()"
+        (click)="toggleFavorite(prop)">
+    <i class="bi"
+       [ngClass]="isFavorite(prop) ? 'bi-heart-fill text-danger' : 'bi-heart'"></i>
+</button>
                   <button class="gallery-btn" [attr.data-count]="prop.galleryCount"><i class="bi bi-images"></i></button>
                 </div>
               </div>
@@ -144,7 +149,12 @@
                       </div>
                     </div>
                     <div class="property-actions">
-                      <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-heart"></i></button>
+<button class="btn btn-outline-secondary btn-sm"
+        *ngIf="auth.isLogged()"
+        (click)="toggleFavorite(prop)">
+    <i class="bi"
+       [ngClass]="isFavorite(prop) ? 'bi-heart-fill text-danger' : 'bi-heart'"></i>
+</button>
                       <a href="#" class="btn btn-primary btn-sm">View Details</a>
                     </div>
                   </div>

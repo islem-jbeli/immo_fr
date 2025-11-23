@@ -89,10 +89,27 @@
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
+
+
+}
+/* Icône cœur rempli */
+.btn-outline-secondary i.bi-heart-fill {
+  color: red;         /* rouge vif pour le favori */
+  font-size: 1.2rem;
+  transition: color 0.3s, transform 0.3s;
+}
+.btn-outline-secondary i.bi-heart {
+  color: #ff4d4d;    /* rouge clair pour bien voir le cœur vide */
+  font-size: 1.2rem;
+  
+  transition: color 0.3s, transform 0.3s;
 }
 
-.favorite-btn:hover, .gallery-btn:hover {
-  background: #007bff;
+/* Hover sur le bouton */
+.btn-outline-secondary:hover i.bi-heart,
+.btn-outline-secondary:hover i.bi-heart-fill {
+  transform: scale(1.2);  /* léger zoom */
+  color: #ff6666;         /* rouge plus clair au survol */
 }
 
 .property-content {
@@ -224,3 +241,5 @@
     margin-bottom: 20px;
   }
 }
+
+

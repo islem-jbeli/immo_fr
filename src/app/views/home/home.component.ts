@@ -8,6 +8,8 @@ import { TestimonialsComponent } from '../testimonials/testimonials.component';
 import { WhyUsComponent } from '../why-us/why-us.component';
 import { RecentBlogPostsComponent } from '../recent-blog-posts/recent-blog-posts.component';
 import { CallToActionComponent } from '../call-to-action/call-to-action.component';
+import { PropertyCardComponent } from '../property-card/property-card.component';
+
 
 @Component({
   selector: 'app-home',
@@ -19,7 +21,8 @@ import { CallToActionComponent } from '../call-to-action/call-to-action.componen
       TestimonialsComponent,
       WhyUsComponent,
       RecentBlogPostsComponent,
-      CallToActionComponent,],
+      CallToActionComponent,
+    PropertyCardComponent,],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

@@ -1,0 +1,29 @@
+.property-card {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.property-img img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 26px;
+  color: red;
+  cursor: pointer;
+  background: white;
+  padding: 6px 8px;
+  border-radius: 50%;
+}
+
+.property-content {
+  padding: 15px;
+}

@@ -1,11 +1,28 @@
 <div class="login-page">
   <div class="login-card">
     <h2>Login</h2>
+
     <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+
       <input type="email" name="email" placeholder="Email Address" ngModel required>
+      <div *ngIf="loginForm.submitted && loginForm.controls['email']?.invalid" class="error">
+        ⚠️ Email est requis
+      </div>
+
       <input type="password" name="password" placeholder="Password" ngModel required>
-      <button type="submit">Login</button>
+      <div *ngIf="loginForm.submitted && loginForm.controls['password']?.invalid" class="error">
+        ⚠️ Mot de passe est requis
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Connexion...' : 'Login' }}
+      </button>
     </form>
+
+    <!-- Message serveur dynamique -->
+    <div *ngIf="errorMessage" class="server-error">
+      {{ errorMessage }}
+    </div>
 
     <div class="links">
       <a routerLink="/register">Create an Account</a> | 

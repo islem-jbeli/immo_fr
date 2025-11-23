@@ -1,0 +1,15 @@
+<div class="login-container">
+  <h2>Connexion Admin</h2>
+
+  <div class="form-group">
+    <input type="email" placeholder="Email" [(ngModel)]="email" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <input type="password" placeholder="Mot de passe" [(ngModel)]="password" class="form-control">
+  </div>
+
+  <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <button class="btn btn-primary" (click)="loginAdmin()">Se connecter</button>
+</div>
