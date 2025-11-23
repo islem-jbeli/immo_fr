@@ -4,10 +4,11 @@
   </h2>
 
   <div *ngIf="messages.length > 0; else noMessages">
-    <div *ngFor="let msg of messages" 
+    <div *ngFor="let msg of messages; let i = index" 
          class="card message-card mb-3 shadow-sm border-0"
          [ngClass]="{ 'bg-light': msg.lu, 'border-start border-4 border-primary': !msg.lu }"
          (click)="ouvrirMessage(msg)">
+      
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-start">
           <div>
@@ -22,14 +23,27 @@
           </small>
         </div>
 
+        <!-- Boutons d'action -->
         <div class="d-flex justify-content-end mt-2 gap-2">
           <button class="btn btn-sm btn-outline-success" (click)="marquerCommeLu(msg, $event)">
             <i class="fas fa-check"></i> Marquer lu
+          </button>
+          <button class="btn btn-sm btn-outline-primary" (click)="toggleReponse(i, $event)">
+            <i class="fas fa-reply"></i> Répondre
           </button>
           <button class="btn btn-sm btn-outline-danger" (click)="supprimerMessage(msg.id, $event)">
             <i class="fas fa-trash"></i> Supprimer
           </button>
         </div>
+
+        <!-- Champ de réponse -->
+        <div *ngIf="msg.showReponse" class="mt-3">
+          <textarea class="form-control mb-2" rows="2" placeholder="Écrire une réponse..." [(ngModel)]="msg.reponse"></textarea>
+          <button class="btn btn-sm btn-primary" (click)="envoyerReponse(msg)">
+            <i class="fas fa-paper-plane"></i> Envoyer
+          </button>
+        </div>
+
       </div>
     </div>
   </div>

@@ -88,19 +88,6 @@
 
       
 
-   
-        <!-- Recommandations IA -->
-        <li class="nav-item">
-          <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleMenu('ia')">
-            <span><i class="fas fa-robot"></i> Recommandations IA</span>
-            <i class="fas" [ngClass]="{'fa-chevron-down': !menus.ia, 'fa-chevron-up': menus.ia}"></i>
-          </a>
-          <ul class="list-unstyled pl-3" *ngIf="menus.ia">
-            <li><a href="#" class="nav-link">🤖 Voir performances</a></li>
-            <li><a href="#" class="nav-link">🔄 Relancer suggestions</a></li>
-            <li><a href="#" class="nav-link">📈 Suivi de l’engagement</a></li>
-          </ul>
-        </li>
 
         <!-- Statistiques -->
         <li class="nav-item">
@@ -323,58 +310,11 @@
 
 
 
+   
 
 
 
 
-
-
-<div class="col-md-4">
-  <div class="card shadow-sm h-100 border-0 rounded-lg hover-scale" style="background: #fff;">
-    
-    <!-- En-tête -->
-    <div class="card-header d-flex justify-content-between align-items-center bg-transparent border-bottom-0 pb-2">
-      <div class="d-flex align-items-center">
-        <i class="fas fa-robot fa-lg text-primary mr-2"></i>
-        <span class="font-weight-bold">Suggestions IA</span>
-      </div>
-      <span class="badge bg-success rounded-pill px-3 py-1">IA</span>
-    </div>
-
-    <!-- Corps -->
-    <div class="card-body d-flex flex-column justify-content-between p-2">
-      
-      <!-- Texte descriptif -->
-      <p class="text-muted mb-0" style="font-size: 0.9rem; line-height: 1.3;">
-        Recevez des recommandations intelligentes pour améliorer l'engagement des utilisateurs et optimiser vos publications.
-      </p>
-
-      <!-- Mini-graphique -->
-      <div class="bg-light rounded p-1 mt-1 text-center shadow-sm">
-        <canvas id="miniIAChart" height="10"></canvas>
-      </div>
-
-      <!-- Indicateur -->
-      <div class="mt-1 mb-2">
-        <small class="text-secondary d-block mb-0">Performance IA</small>
-        <div class="progress" style="height: 5px; border-radius: 10px;">
-          <div class="progress-bar bg-primary" role="progressbar" style="width: 78%; border-radius: 10px;"></div>
-        </div>
-      </div>
-
-      <!-- Actions -->
-      <div class="d-flex flex-column">
-        <button class="btn btn-primary btn-sm mb-1 d-flex align-items-center justify-content-center">
-          <i class="fas fa-sync-alt mr-2"></i> Relancer
-        </button>
-        <a href="#" class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center">
-          <i class="fas fa-arrow-right mr-2"></i> Voir suggestions
-        </a>
-      </div>
-
-    </div>
-  </div>
-</div>
 
         <!-- Colonne vide ou future -->
        <div class="col-md-4">
