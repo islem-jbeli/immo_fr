@@ -7,20 +7,19 @@ import { map, catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private logged = true; // juste pour test, à remplacer par la vraie logique
   private apiUrl = "http://localhost:8081/api/auth";
 
   constructor(private http: HttpClient) {}
 
   // Vérifie si l'utilisateur est connecté
   isLogged(): boolean {
-    return this.logged || !!localStorage.getItem("token");
+    return !!localStorage.getItem("token");
   }
 
   // Récupérer l'ID de l'utilisateur connecté
   getUserId(): number | null {
     const userId = localStorage.getItem("userId");
-    return userId ? +userId : null; // renvoie null si pas connecté
+    return userId ? +userId : null;
   }
 
   // Inscription
@@ -38,19 +37,15 @@ export class AuthService {
         localStorage.setItem("token", res.token);
         localStorage.setItem("email", res.email);
         localStorage.setItem("role", res.role);
-        localStorage.setItem("userId", res.id); // <-- stocke l'ID de l'utilisateur
+        localStorage.setItem("userId", res.id); 
       }),
       map(() => true),
       catchError(() => of(false))
     );
   }
 
-  logout() {
+  // Déconnexion
+  logout(): void {
     localStorage.clear();
   }
-
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem("token");
-  }
-  
 }

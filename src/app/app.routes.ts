@@ -30,7 +30,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 
 import { ProfilComponent } from './compuser/profil/profil.component';
 import { AnnonceuserComponent } from './compuser/annonceuser/annonceuser.component';
-import { FavorisComponent } from './compuser/favoris/favoris.component';
+
 import { MesMessagesComponent } from './compuser/mes-messages/mes-messages.component';
 import { AjouterAnnonceComponent } from './compuser/ajouter-annonce/ajouter-annonce.component';
 import { StatistiqueuserComponent } from './compuser/statistiqueuser/statistiqueuser.component';
@@ -98,7 +98,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'profil', component: ProfilComponent },
 { path: 'annonceuser', component: AnnonceuserComponent },
-{ path: 'favoris', component: FavorisComponent }, 
+ 
 { path: 'mes-messages', component: MesMessagesComponent },
 { path: 'ajouter-annonce', component: AjouterAnnonceComponent },
 { path: 'statistiqueuser', component: StatistiqueuserComponent },

@@ -42,6 +42,20 @@
         <textarea id="description" name="description" rows="4" class="form-control" [(ngModel)]="annonce.description"></textarea>
       </div>
 
+      <!-- Photos -->
+      <div class="mb-3">
+        <label for="photos" class="form-label">Photos</label>
+        <input type="file" id="photos" name="photos" class="form-control" multiple (change)="onFilesSelected($event)">
+      </div>
+
+      <!-- Aperçu des photos -->
+      <div class="mb-3" *ngIf="selectedFiles && selectedFiles.length > 0">
+        <label class="form-label">Aperçu :</label>
+        <div class="d-flex flex-wrap gap-2">
+          <img *ngFor="let file of selectedFiles" [src]="file.preview" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
+        </div>
+      </div>
+
       <!-- Bouton submit -->
       <button type="submit" class="btn btn-success">
         <i class="fas fa-paper-plane me-2"></i> Publier
