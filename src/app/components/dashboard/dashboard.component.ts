@@ -28,6 +28,15 @@ interface Property {
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements AfterViewInit {
+  admin: any;
+
+ngOnInit() {
+  const data = localStorage.getItem('admin');
+  if (data) {
+    this.admin = JSON.parse(data);
+  }
+}
+
 
   // Statistiques principales
   usersCount = 1250;

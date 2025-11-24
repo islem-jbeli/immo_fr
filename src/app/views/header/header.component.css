@@ -1,28 +1,15 @@
-.favorite-icon {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  font-size: 28px;
-  cursor: pointer;
-  color: red;
-}
 .floating-icons {
-  position: fixed;      /* toujours visible même au scroll */
-  bottom: 20px;         /* distance du bas */
-  right: 20px;          /* distance de la droite */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  z-index: 1000;        /* au-dessus de tout */
 }
 
 .btn-circle {
+  border-radius: 50%;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: white;
+  padding: 0;
 }

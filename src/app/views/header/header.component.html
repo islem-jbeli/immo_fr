@@ -2,40 +2,30 @@
   <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
     <a routerLink="/" class="logo d-flex align-items-center me-auto me-xl-0">
-      <!-- <img src="assets/img/logo.webp" alt=""> -->
       <h1 class="sitename">ImmoSmart</h1>
     </a>
 
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a routerLink="/" routerLinkActive="active">Home</a></li>       
-         <li><a routerLink="/about" routerLinkActive="active">About</a></li>       
-          <li><a routerLink="/properties" routerLinkActive="active">Properties</a></li>
+        <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+        <li><a routerLink="/properties" routerLinkActive="active">Properties</a></li>
         <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
         <li><a routerLink="/agents" routerLinkActive="active">Agents</a></li>
         <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
- 
-
-      
-
-        <li><a routerLink="/contact" routerLinkActing ve="active">Contact</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
 
+    <div>
+      <button class="btn-getstarted" routerLink="/login-propri">
+        <i class="fas fa-tachometer-alt me-1"></i> Mon Dashboard
+      </button>
+      <a class="btn-getstarted" routerLink="/login">Login</a>
+    </div>
 
-  <div >
-<button class="btn-getstarted"  routerLink="/login-propri">
-  <i class="fas fa-tachometer-alt me-1"></i> Mon Dashboard
-</button>
-
-    <a class="btn-getstarted" routerLink="/login">Login</a>
-  </div>
-
-
-
-  </div>
-<!-- Floating buttons (affichés seulement si connecté) -->
+<!-- Floating buttons : visibles seulement si connecté -->
 <div class="floating-icons" *ngIf="auth.isLogged()">
   <!-- Cœur pour les favoris -->
   <button class="btn btn-danger btn-circle" (click)="goToFavorites()">
@@ -49,4 +39,7 @@
 </div>
 
 
+
+
+  </div>
 </header>

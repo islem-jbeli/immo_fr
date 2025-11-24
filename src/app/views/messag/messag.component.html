@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h2>Messagerie</h2>
+
+  <!-- Formulaire pour envoyer un message -->
+  <div class="mb-3">
+    <textarea [(ngModel)]="newMessageContent" class="form-control" placeholder="Écrire un message..."></textarea>
+    <button class="btn btn-primary mt-2" (click)="sendMessage()">Envoyer</button>
+  </div>
+
+  <!-- Liste des messages -->
+  <div *ngIf="messages.length === 0" class="alert alert-info">
+    Aucun message pour le moment.
+  </div>
+
+  <div *ngFor="let msg of messages" class="card mb-2">
+    <div class="card-body">
+      <p>{{ msg.content }}</p>
+     <small class="text-muted">
+  De: {{ msg.sender }} | Envoyé: {{ msg.sentDate | date:'short' }}
+</small>
+
+  </div>
+</div>

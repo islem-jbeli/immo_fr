@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router,RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login-admin',
   standalone: true,
-  imports: [FormsModule, CommonModule,RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './login-admin.component.html',
   styleUrls: ['./login-admin.component.css']
 })
@@ -29,8 +29,13 @@ export class LoginAdminComponent {
     this.http.post(this.apiUrl, request).subscribe({
       next: (res: any) => {
         console.log('Admin connecté :', res);
+
         this.errorMessage = '';
-        // Rediriger vers le dashboard admin
+
+        // 🔵 Sauvegarder l'admin connecté
+        localStorage.setItem('admin', JSON.stringify(res));
+
+        // 🔵 Rediriger vers le dashboard
         this.router.navigate(['/dashboard/home']);
       },
       error: (err) => {

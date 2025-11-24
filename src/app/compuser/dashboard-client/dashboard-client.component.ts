@@ -12,6 +12,12 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./dashboard-client.component.css']
 })
 export class DashboardClientComponent implements AfterViewInit {
+  userName: string = '';
+
+ngOnInit() {
+  this.userName = localStorage.getItem('userName') || 'Utilisateur';
+}
+
 
 
  // ✅ Variable pour contrôler le dropdown
@@ -23,7 +29,6 @@ export class DashboardClientComponent implements AfterViewInit {
   }
 
 
-  userName = 'Islem';
   totalProperties = 8;
   totalFavorites = 5;
   totalMessages = 12;

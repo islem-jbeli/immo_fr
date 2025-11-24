@@ -1,16 +1,19 @@
 <div class="card property-card position-relative">
-  <img [src]="property.image" class="card-img-top" alt="property">
+  <img [src]="property.image" class="card-img-top" alt="{{ property.title }}">
 
-  <!-- Bouton Favori visible seulement si connecté ET sur Home -->
-  <button *ngIf="isConnected && isHomePage"
-          class="favorite-btn"
+  <!-- Bouton favoris : visible seulement si connecté -->
+  <button *ngIf="isConnected"
+          class="btn btn-outline-secondary btn-sm position-absolute top-0 end-0 m-2"
           (click)="toggleFavorite()">
-    <i [class]="isFavorite ? 'bi-heart-fill text-danger' : 'bi-heart text-white'"></i>
+    <i class="bi" [ngClass]="isFavorite ? 'bi-heart-fill text-danger' : 'bi-heart text-white'"></i>
   </button>
+<button *ngIf="auth.isLogged()" class="btn btn-primary" (click)="openChat(property.id, property.ownerId)">
+  <i class="bi bi-chat-dots-fill"></i> Message au propriétaire
+</button>
 
   <div class="card-body">
     <h5 class="card-title">{{ property.title }}</h5>
     <p class="card-text">{{ property.location }}</p>
-    <p class="card-text">{{ property.price }}</p>
+    <p class="card-text">{{ property.price | currency:'TND':'symbol' }}</p>
   </div>
 </div>

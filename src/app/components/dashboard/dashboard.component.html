@@ -15,7 +15,8 @@
     <a class="nav-link d-flex align-items-center" (click)="toggleDropdown()" style="cursor:pointer; position: relative;">
       <img src="https://www.portraitprofessionnel.fr/wp-content/uploads/2022/02/Photographe_profesionnel_portrait_studio_a_Paris-1.jpg" 
            alt="Avatar utilisateur" class="rounded-circle avatar mr-2" />
-      <span class="user-name">Islem</span>
+   <span class="user-name">{{ admin?.nom }} {{ admin?.prenom }}</span>
+
       
       <!-- Fleche animée / “flesh” -->
       <span class="flesh-badge"></span>

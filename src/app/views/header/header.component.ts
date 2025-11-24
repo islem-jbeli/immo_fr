@@ -13,11 +13,14 @@ import { AuthService } from '../../services/auth.service'; // ajuste le chemin s
 export class HeaderComponent {
   constructor(public auth: AuthService, private router: Router) {}
 
-  goToFavorites() {
-    this.router.navigate(['/favorites']); // route vers la page des favoris
-  }
+goToFavorites() {
+  this.router.navigate(['/favorites']);
+}
 
-  goToMessages() {
-    this.router.navigate(['/messages']); // route vers la page des messages
-  }
+goToMessages() {
+  this.router.navigate(['/messag']);
+}
+
+
+
 }

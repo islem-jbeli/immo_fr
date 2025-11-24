@@ -48,6 +48,9 @@ import { LoginAdminComponent } from './componenet/login-admin/login-admin.compon
 import { LoginPropriComponent } from './componenet/login-propri/login-propri.component';
 import { RegisterPropriComponent } from './componenet/register-propri/register-propri.component';
 import { FavoritesComponent } from './views/favorites/favorites.component';
+import { PropertyCardComponent } from './views/property-card/property-card.component';
+import { MessagComponent } from './views/messag/messag.component';
+
 
 export const routes: Routes = [
 
@@ -66,6 +69,8 @@ export const routes: Routes = [
   { path: 'login-propri', component: LoginPropriComponent }, 
   { path: 'register-propri', component: RegisterPropriComponent },
       { path: 'login-admin', component: LoginAdminComponent },
+      { path: 'property-card', component: PropertyCardComponent },
+{ path: 'messag', component: MessagComponent },
 
 
 { path: 'dashboard-admin', redirectTo: 'dashboard', pathMatch: 'full' },
