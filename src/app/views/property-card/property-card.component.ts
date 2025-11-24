@@ -24,7 +24,7 @@ export class PropertyCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isConnected = this.authService.isLoggedIn();
+this.isConnected = this.authService.isLogged();
     const currentUrl = this.router.url;
     this.isHomePage = currentUrl === '/' || currentUrl === '/home';
   }

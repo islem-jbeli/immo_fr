@@ -1,8 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router,RouterModule } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+
 
 Chart.register(...registerables);
 
@@ -21,7 +23,7 @@ interface Property {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule,FormsModule, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })

@@ -1,9 +1,8 @@
-/* Wrapper centré pleine page */
-.login-wrapper {
+.register-wrapper {
   width: 100%;
   height: 100vh;
   background: linear-gradient(
-      rgba(0, 0, 0, 0.45), 
+      rgba(0, 0, 0, 0.45),
       rgba(0, 0, 0, 0.45)
     ),
     url('/assets/images/house-bg.jpg') center/cover no-repeat;
@@ -12,9 +11,8 @@
   align-items: center;
 }
 
-/* Card */
-.login-box {
-  width: 380px;
+.register-box {
+  width: 420px;
   background: #ffffffdd;
   backdrop-filter: blur(6px);
   padding: 35px 30px;
@@ -25,7 +23,7 @@
 
 .title {
   text-align: center;
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   color: #1d3557;
   margin-bottom: 5px;
@@ -37,7 +35,6 @@
   margin-bottom: 25px;
 }
 
-/* Labels + Inputs */
 .input-group {
   margin-bottom: 16px;
 }
@@ -64,7 +61,6 @@
   background: white;
 }
 
-/* Bouton */
 .btn-submit {
   width: 100%;
   padding: 12px;
@@ -82,26 +78,26 @@
   background: #457b9d;
 }
 
-/* Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.create-account {
+.login-link {
   text-align: center;
   margin-top: 18px;
   font-size: 14px;
   color: #222;
 }
 
-.create-account a {
+.login-link a {
   font-weight: 600;
   color: #1d3557;
   text-decoration: none;
   transition: 0.3s;
 }
 
-.create-account a:hover {
+.login-link a:hover {
   color: #457b9d;
   text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

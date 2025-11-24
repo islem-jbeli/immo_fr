@@ -44,10 +44,9 @@ import { AccountSettingsComponent } from './user/account-settings/account-settin
 import { VisitesComponent } from './user/visites/visites.component';
 
 
-import { LoginAdminComponent } from './components/login-admin/login-admin.component';
-
-
-
+import { LoginAdminComponent } from './componenet/login-admin/login-admin.component';
+import { LoginPropriComponent } from './componenet/login-propri/login-propri.component';
+import { RegisterPropriComponent } from './componenet/register-propri/register-propri.component';
 import { FavoritesComponent } from './views/favorites/favorites.component';
 
 export const routes: Routes = [
@@ -63,8 +62,13 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'user/dashboard', component: DashboardClientComponent },
-  { path: 'favorites', component: FavoritesComponent },  // page des favoris
+  { path: 'favorites', component: FavoritesComponent },
+  { path: 'login-propri', component: LoginPropriComponent }, 
+  { path: 'register-propri', component: RegisterPropriComponent },
+      { path: 'login-admin', component: LoginAdminComponent },
 
+
+{ path: 'dashboard-admin', redirectTo: 'dashboard', pathMatch: 'full' },
 
   // Dashboard Admin
   {
@@ -84,7 +88,6 @@ export const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'logout', component: LogoutComponent },
-      { path: 'login-admin', component: LoginAdminComponent },
       { path: 'changer-photo', component: ChangerPhotoComponent },
       { path: 'change-password', component: ChangePasswordComponent }
     ]

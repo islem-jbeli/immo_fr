@@ -1,12 +1,38 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+
+import { Router, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-login-propri',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule,RouterModule],
   templateUrl: './login-propri.component.html',
-  styleUrl: './login-propri.component.css'
+  styleUrls: ['./login-propri.component.css']
 })
 export class LoginPropriComponent {
 
+  email = '';
+  password = '';
+  errorMessage = '';
+
+  constructor(private auth: AuthService, private router: Router) {}
+
+  login() {
+    const credentials = {
+      email: this.email,
+      motDePasse: this.password
+    };
+
+    this.auth.login(credentials).subscribe((success) => {
+      if (success) {
+        this.router.navigate(['/dashboard-client']); 
+      } else {
+        this.errorMessage = "Email ou mot de passe incorrect";
+      }
+    });
+  }
 }

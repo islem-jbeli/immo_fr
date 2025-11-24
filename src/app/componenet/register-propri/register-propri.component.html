@@ -1,0 +1,70 @@
+<div class="register-wrapper">
+  <div class="register-box">
+
+    <h2 class="title">Créer un Compte Propriétaire</h2>
+    <p class="subtitle">Rejoignez ImmoSmart et publiez vos annonces</p>
+
+    <!-- Message d'erreur -->
+    <div *ngIf="errorMessage" class="alert alert-danger py-2 text-center">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Message success -->
+    <div *ngIf="successMessage" class="alert alert-success py-2 text-center">
+      {{ successMessage }}
+    </div>
+
+    <form (ngSubmit)="register()">
+
+      <div class="input-group">
+        <label>Nom</label>
+        <input
+          type="text"
+          [(ngModel)]="nom"
+          name="nom"
+          required
+          placeholder="Votre nom">
+      </div>
+
+      <div class="input-group">
+        <label>Prénom</label>
+        <input
+          type="text"
+          [(ngModel)]="prenom"
+          name="prenom"
+          required
+          placeholder="Votre prénom">
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          required
+          placeholder="exemple@mail.com">
+      </div>
+
+      <div class="input-group">
+        <label>Mot de passe</label>
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+          placeholder="Créer un mot de passe">
+      </div>
+
+      <button type="submit" class="btn-submit">
+        Créer mon compte
+      </button>
+    </form>
+
+    <p class="login-link">
+      Vous avez déjà un compte ?
+      <a routerLink="/login-propri">Connexion</a>
+    </p>
+
+  </div>
+</div>
