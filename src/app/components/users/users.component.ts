@@ -78,9 +78,9 @@ export class UsersComponent implements OnInit {
     this.users = [
       { id: 1, name: 'Islem', firstName: 'Jbeli', email: 'admin@example.com', role: 'Admin', active: true, city: 'Tunis', registrationDate: '2025-01-01', phone: '12345678', address: 'Rue A' },
       { id: 2, name: 'Ahmed', firstName: 'Ben Salah', email: 'ahmed@example.com', role: 'Propriétaire', active: true, city: 'Sfax', registrationDate: '2025-02-15', phone: '98765432', address: 'Rue B' },
-      { id: 3, name: 'Sana', firstName: 'Khaled', email: 'sana@example.com', role: 'Locataire', active: false, city: 'Sousse', registrationDate: '2025-03-20', phone: '11223344', address: 'Rue C' },
-      { id: 4, name: 'Mourad', firstName: 'Hafsi', email: 'mourad@example.com', role: 'Acheteur', active: true, city: 'Ariana', registrationDate: '2025-04-05', phone: '55667788', address: 'Rue D' },
-      { id: 5, name: 'Omar', firstName: 'Ben Salem', email: 'omar@test.com', role: 'Acheteur', active: false, city: 'Kef', registrationDate: '2025-11-26', phone: '55987788', address: 'Rue K' }
+      { id: 3, name: 'Sana', firstName: 'Khaled', email: 'sana@example.com', role: 'utilisateur', active: false, city: 'Sousse', registrationDate: '2025-03-20', phone: '11223344', address: 'Rue C' },
+      { id: 4, name: 'Mourad', firstName: 'Hafsi', email: 'mourad@example.com', role: 'Propriétaire', active: true, city: 'Ariana', registrationDate: '2025-04-05', phone: '55667788', address: 'Rue D' },
+      { id: 5, name: 'Omar', firstName: 'Ben Salem', email: 'omar@test.com', role: 'utilisateur', active: false, city: 'Kef', registrationDate: '2025-11-26', phone: '55987788', address: 'Rue K' }
     ];
     this.applyFilters();
   }

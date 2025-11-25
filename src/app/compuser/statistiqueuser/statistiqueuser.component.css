@@ -1,18 +1,40 @@
-/* Animation hover pour les cartes */
-.hover-scale {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.hover-scale:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+/* Réduire la taille des cartes contenant les charts */
+.card {
+  padding: 20px !important;
+  max-height: 330px; /* Limite la hauteur */
+  min-height: 260px; /* Evite que ce soit trop petit */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* Ajustement des titres */
-.card h5 {
+/* Taille maximale des charts */
+canvas {
+  max-height: 220px !important;  
+  height: 220px !important;
+  width: 100% !important;
+}
+
+/* Animation légère */
+.hover-scale {
+  transition: 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Style du titre des sections */
+h5 {
   font-size: 1.1rem;
 }
 
-/* Espacement pour les icônes */
-.card i {
-  font-size: 1.2rem;
+/* Pour éviter que le doughnut soit trop gros */
+#favorisChart {
+  max-height: 200px !important;
+}
+
+/* Pour la section tendances */
+#tendanceChart {
+  max-height: 240px !important;
 }

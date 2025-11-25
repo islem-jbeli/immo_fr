@@ -1,41 +1,71 @@
 <div class="container mt-4">
-  <!-- Titre de la page -->
+
+  <!-- Header -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3 class="fw-bold text-primary mb-0">
-      <i class="fas fa-chart-bar me-2"></i>📈 Statistiques de mes annonces
+      📊 Statistiques de mes annonces
     </h3>
+
+    <!-- Filtres + Export -->
+    <div class="d-flex gap-2">
+      <select [(ngModel)]="selectedPeriod" class="form-select">
+        <option value="7">7 derniers jours</option>
+        <option value="30">30 derniers jours</option>
+        <option value="90">3 derniers mois</option>
+        <option value="365">1 année</option>
+        <option value="custom">Personnalisé</option>
+      </select>
+
+      <button class="btn btn-success" (click)="exportData()">
+        <i class="fas fa-download"></i> Exporter
+      </button>
+    </div>
+  </div>
+
+  <!-- Si période personnalisée -->
+  <div *ngIf="selectedPeriod === 'custom'" class="row mb-3">
+    <div class="col-md-4">
+      <input type="date" [(ngModel)]="startDate" class="form-control">
+    </div>
+    <div class="col-md-4">
+      <input type="date" [(ngModel)]="endDate" class="form-control">
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-primary" (click)="applyCustomFilter()">Appliquer</button>
+    </div>
   </div>
 
   <div class="row g-4">
-    <!-- Graphique Vues -->
+    <!-- Vues -->
     <div class="col-md-6">
       <div class="card shadow-sm p-4 rounded-3 hover-scale">
-        <h5 class="fw-bold mb-3">
-          <i class="fas fa-eye me-2 text-success"></i> Vues
-        </h5>
-        <canvas id="vuesChart" class="w-100" style="height: 250px;"></canvas>
+        <h5 class="fw-bold mb-3"><i class="fas fa-eye text-success me-2"></i> Vues</h5>
+        <canvas id="vuesChart"></canvas>
       </div>
     </div>
 
-    <!-- Graphique Clics -->
+    <!-- Clics -->
     <div class="col-md-6">
       <div class="card shadow-sm p-4 rounded-3 hover-scale">
-        <h5 class="fw-bold mb-3">
-          <i class="fas fa-mouse-pointer me-2 text-primary"></i> Clics
-        </h5>
-        <canvas id="clicsChart" class="w-100" style="height: 250px;"></canvas>
+        <h5 class="fw-bold mb-3"><i class="fas fa-mouse-pointer text-primary me-2"></i> Clics</h5>
+        <canvas id="clicsChart"></canvas>
       </div>
     </div>
 
-    <!-- Graphique Favoris -->
-    <div class="col-md-6 col-lg-12 mt-4">
+    <!-- Favoris -->
+    <div class="col-md-12">
       <div class="card shadow-sm p-4 rounded-3 hover-scale">
-        <h5 class="fw-bold mb-3">
-          <i class="fas fa-heart me-2 text-danger"></i> Favoris
-        </h5>
-        <canvas id="favorisChart" class="w-100" style="height: 250px;"></canvas>
+        <h5 class="fw-bold mb-3"><i class="fas fa-heart text-danger me-2"></i> Favoris</h5>
+        <canvas id="favorisChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Tendances des biens -->
+    <div class="col-md-12">
+      <div class="card shadow-sm p-4 rounded-3 hover-scale">
+        <h5 class="fw-bold mb-3"><i class="fas fa-chart-line text-warning me-2"></i> Tendances des biens</h5>
+        <canvas id="tendanceChart"></canvas>
       </div>
     </div>
   </div>
 </div>
-
